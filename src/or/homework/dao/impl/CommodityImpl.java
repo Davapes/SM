@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommodityDao implements ICommodityDao {
+public class CommodityImpl implements ICommodityDao {
     @Override
     public void add(Commodity commodity) {
         String sql = "INSERT INTO Commodity (cName,units,origin,brand) VALUES (?,?,?,?,?)";
@@ -154,5 +154,5 @@ public class CommodityDao implements ICommodityDao {
         }
         return null;
     }
-    }
 }
+
