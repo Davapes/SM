@@ -3,8 +3,6 @@ package or.homework.dao.impl;
 import or.homework.dao.ICommodityDao;
 import or.homework.util.ConnectJDBC;
 import or.homework.vo.Commodity;
-
-import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,7 +89,6 @@ public class CommodityImpl implements ICommodityDao {
             }
         }
     }
-
     @Override
     public List<Commodity> select(Commodity commodity) {
         String sql="SELECT * FROM Commodity WHERE 1=1 ";
@@ -154,5 +151,7 @@ public class CommodityImpl implements ICommodityDao {
         }
         return null;
     }
+
 }
+
 

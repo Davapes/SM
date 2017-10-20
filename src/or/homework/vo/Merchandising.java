@@ -6,7 +6,7 @@ import java.util.Date;
 public class Merchandising {
     private Long mID;
     private Long mAmount;//销售金额
-    private Long Profit//盈利金额
+    private Long Profit;//盈利金额
     private Date mDate;
 
     public Long getmID() {

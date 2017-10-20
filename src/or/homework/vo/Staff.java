@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Staff {
     private Long sID;
-    private Long tId;
+    private Long tID;//领导id
     private String sName;
     private String sSex;
     private Long sPhone;
@@ -21,12 +21,12 @@ public class Staff {
         this.sID = sID;
     }
 
-    public Long gettId() {
-        return tId;
+    public Long gettID() {
+        return tID;
     }
 
-    public void settId(Long tId) {
-        this.tId = tId;
+    public void settID(Long tID) {
+        this.tID = tID;
     }
 
     public String getsName() {

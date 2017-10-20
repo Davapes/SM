@@ -4,12 +4,47 @@ import java.util.Date;
 //出库类
 public class Exit {
     private Long exitID;
+    private Long staffid;
+    private Date exitDate;
+    private Long exitNum;
+    private Long supermarket;
+    private Long commodityid;
+    private Long warehouseid;
     private Staff number;
     private SuperMarket serial;
     private Commodity num;
     private Warehouse whnum;
-    private Date exitDate;
-    private Long exitNum;
+
+    public Long getStaffid() {
+        return staffid;
+    }
+
+    public void setStaffid(Long staffid) {
+        this.staffid = staffid;
+    }
+    public Long getSupermarket() {
+        return supermarket;
+    }
+
+    public void setSupermarket(Long supermarket) {
+        this.supermarket = supermarket;
+    }
+
+    public Long getCommodityid() {
+        return commodityid;
+    }
+
+    public void setCommodityid(Long commodityid) {
+        this.commodityid = commodityid;
+    }
+
+    public Long getWarehouseid() {
+        return warehouseid;
+    }
+
+    public void setWarehouseid(Long warehouseid) {
+        this.warehouseid = warehouseid;
+    }
 
     public Long getExitID() {
         return exitID;

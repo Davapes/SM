@@ -6,8 +6,25 @@ public class Purchase {
     private Long pchID;
     private Long pchMoney;
     private Date pchDate;
-    private Staff number;
-    private Supplier numeration;
+    private Long staffid;
+    private Long supplierid;
+    private Staff number;//采购员对象
+    private Supplier numeration;//供应商对象
+    public Long getStaffid() {
+        return staffid;
+    }
+
+    public void setStaffid(Long staffid) {
+        this.staffid = staffid;
+    }
+
+    public Long getSupplierid() {
+        return supplierid;
+    }
+
+    public void setSupplierid(Long supplierid) {
+        this.supplierid = supplierid;
+    }
 
     public Long getPchID() {
         return pchID;
