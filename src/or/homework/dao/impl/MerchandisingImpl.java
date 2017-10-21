@@ -141,6 +141,6 @@ public class MerchandisingImpl implements IMerchandisingDao {
             }
 
         }
-        return null;
+        return result;
     }
 }

@@ -9,4 +9,5 @@ public interface IWarehouseDao {
     public void delete(Warehouse warehouse);
     public void update(Warehouse warehouse);
     public List<Warehouse> select(Warehouse warehouse);
+    public List<Warehouse>query(Warehouse warehouse);
 }

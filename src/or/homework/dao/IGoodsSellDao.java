@@ -9,4 +9,6 @@ public interface IGoodsSellDao {
     public void delete(GoodsSell goodsSell);
     public void update(GoodsSell goodsSell);
     public List<GoodsSell> select(GoodsSell goodsSell);
+    public List<GoodsSell>query(GoodsSell goodsSell);//查询商品信息
+    public List<GoodsSell>queryone(GoodsSell goodsSell);//查询销售单信息
 }

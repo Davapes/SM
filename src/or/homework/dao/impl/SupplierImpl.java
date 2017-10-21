@@ -159,7 +159,7 @@ public class SupplierImpl implements ISupplierDao {
             }
 
         }
-        return null;
+        return result;
     }
 }
 

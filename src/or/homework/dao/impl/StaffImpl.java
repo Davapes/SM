@@ -107,7 +107,7 @@ public class StaffImpl implements IStaffDao {
         }
         if(staff.gettID()!=null){
             sql+=" and tID ";
-            params.add(staff.getsID());
+            params.add(staff.gettID());
         }
         if(staff.getsName()!=null){
             sql+=" and sName ";
@@ -178,7 +178,7 @@ public class StaffImpl implements IStaffDao {
             }
 
         }
-        return null;
+        return result;
     }
 }
 

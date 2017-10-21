@@ -2,7 +2,9 @@ package or.homework.dao.impl;
 
 import or.homework.dao.IGoodsSellDao;
 import or.homework.util.ConnectJDBC;
+import or.homework.vo.Commodity;
 import or.homework.vo.GoodsSell;
+import or.homework.vo.Merchandising;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -142,7 +144,90 @@ public class GoodsSellImpl implements IGoodsSellDao {
             }
 
         }
-        return null;
+        return result;
+    }
+
+    @Override
+    public List<GoodsSell> query(GoodsSell goodsSell) {
+        String sql = "SELECT * FROM GoodsSell AS G,Commodity AS S WHERE G.gsID = S.cID";
+        List<Object> params = new ArrayList<Object>();
+        List<GoodsSell> result = new ArrayList<GoodsSell>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                GoodsSell b = new GoodsSell();
+                b.setGsID(rs.getLong("gsID"));
+                b.setGsNum(rs.getLong("gsNum"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setMerchandisingid(rs.getLong("merchandisingid"));
+                Commodity a = new Commodity();
+                a.setcID(rs.getLong("cID"));
+                a.setcName(rs.getString("cName"));
+                a.setUnits(rs.getString("units"));
+                a.setOrigin(rs.getNString("origin"));
+                a.setBrand(rs.getString("brand"));
+                b.setNum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public List<GoodsSell> queryone(GoodsSell goodsSell) {
+        String sql = "SELECT * FROM  GoodsSell AS G,Merchandising AS M WHERE G.gsID = M.mID";
+        List<Object> params = new ArrayList<Object>();
+        List<GoodsSell> result = new ArrayList<GoodsSell>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                GoodsSell b = new GoodsSell();
+                b.setGsID(rs.getLong("gsID"));
+                b.setGsNum(rs.getLong("gsNum"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setMerchandisingid(rs.getLong("merchandisingid"));
+                Merchandising a = new Merchandising();
+                a.setmID(rs.getLong("mID"));
+                a.setmAmount(rs.getLong("mAmount"));
+                a.setProfit(rs.getLong("Profit"));
+                a.setmDate(rs.getDate("mDate"));
+                b.setMnum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
     }
 }
 

@@ -149,7 +149,7 @@ public class CommodityImpl implements ICommodityDao {
             }
 
         }
-        return null;
+        return result;
     }
 
 }

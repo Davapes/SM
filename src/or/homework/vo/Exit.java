@@ -5,15 +5,31 @@ import java.util.Date;
 public class Exit {
     private Long exitID;
     private Long staffid;
+    private Long snumation;
     private Date exitDate;
     private Long exitNum;
-    private Long supermarket;
     private Long commodityid;
     private Long warehouseid;
     private Staff number;
-    private SuperMarket serial;
+    private Staff numation;
     private Commodity num;
     private Warehouse whnum;
+
+    public Long getSnumation() {
+        return snumation;
+    }
+
+    public void setSnumation(Long snumation) {
+        this.snumation = snumation;
+    }
+
+    public Staff getNumation() {
+        return numation;
+    }
+
+    public void setNumation(Staff numation) {
+        this.numation = numation;
+    }
 
     public Long getStaffid() {
         return staffid;
@@ -21,13 +37,6 @@ public class Exit {
 
     public void setStaffid(Long staffid) {
         this.staffid = staffid;
-    }
-    public Long getSupermarket() {
-        return supermarket;
-    }
-
-    public void setSupermarket(Long supermarket) {
-        this.supermarket = supermarket;
     }
 
     public Long getCommodityid() {
@@ -60,14 +69,6 @@ public class Exit {
 
     public void setNumber(Staff number) {
         this.number = number;
-    }
-
-    public SuperMarket getSerial() {
-        return serial;
-    }
-
-    public void setSerial(SuperMarket serial) {
-        this.serial = serial;
     }
 
     public Commodity getNum() {

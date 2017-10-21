@@ -2,7 +2,10 @@ package or.homework.dao.impl;
 
 import or.homework.dao.IPutDao;
 import or.homework.util.ConnectJDBC;
+import or.homework.vo.Commodity;
 import or.homework.vo.Put;
+import or.homework.vo.Staff;
+import or.homework.vo.Warehouse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -149,7 +152,188 @@ public class PutImpl implements IPutDao {
             }
 
         }
-        return null;
+        return result;
+    }
+
+    @Override
+    public List<Put> query(Put exit) {
+        String sql = "SELECT * FROM Put AS P,Staff AS S WHERE P.putID = S.sID";
+        List<Object> params = new ArrayList<Object>();
+        List<Put> result = new ArrayList<Put>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Put b = new Put();
+                b.setPutID(rs.getLong("putID"));
+                b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
+                b.setCaigouid(rs.getLong("caigouid"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setWarehouseid(rs.getLong("warehouseid"));
+                Staff a = new Staff();
+                a.setsID(rs.getLong("sID"));
+                a.settID(rs.getLong("tID"));
+                a.setsName(rs.getString("sName"));
+                a.setsSex(rs.getNString("sSex"));
+                a.setsPhone(rs.getLong("sPhone"));
+                a.setsSalary(rs.getLong("sSalary"));
+                a.setsDate(rs.getDate("sDate"));
+                a.setsAdds(rs.getString("sAdds"));
+                a.setsProfessional(rs.getString("sProfessional"));
+                b.setNumber(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public List<Put> queryone(Put put) {
+        String sql = "SELECT * FROM Put AS P,Staff AS S WHERE P.putID = S.sID";
+        List<Object> params = new ArrayList<Object>();
+        List<Put> result = new ArrayList<Put>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Put b = new Put();
+                b.setPutID(rs.getLong("putID"));
+                b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
+                b.setCaigouid(rs.getLong("caigouid"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setWarehouseid(rs.getLong("warehouseid"));
+                Staff a = new Staff();
+                a.setsID(rs.getLong("sID"));
+                a.settID(rs.getLong("tID"));
+                a.setsName(rs.getString("sName"));
+                a.setsSex(rs.getNString("sSex"));
+                a.setsPhone(rs.getLong("sPhone"));
+                a.setsSalary(rs.getLong("sSalary"));
+                a.setsDate(rs.getDate("sDate"));
+                a.setsAdds(rs.getString("sAdds"));
+                a.setsProfessional(rs.getString("sProfessional"));
+                b.setNumber(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public List<Put> querytwo(Put put) {
+        String sql = "SELECT * FROM Put AS P,Commodity AS C WHERE P.putID = C.cID";
+        List<Object> params = new ArrayList<Object>();
+        List<Put> result = new ArrayList<Put>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Put b = new Put();
+                b.setPutID(rs.getLong("putID"));
+                b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
+                b.setCaigouid(rs.getLong("caigouid"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setWarehouseid(rs.getLong("warehouseid"));
+                Commodity a = new Commodity();
+                a.setcID(rs.getLong("cID"));
+                a.setcName(rs.getString("cName"));
+                a.setUnits(rs.getString("units"));
+                a.setOrigin(rs.getNString("origin"));
+                a.setBrand(rs.getString("brand"));
+                b.setNum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public List<Put> querythree(Put put) {
+        String sql = "SELECT * FROM Put AS P,Warehouse AS W WHERE P.putID = W.whID";
+        List<Object> params = new ArrayList<Object>();
+        List<Put> result = new ArrayList<Put>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Put b = new Put();
+                b.setPutID(rs.getLong("putID"));
+                b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
+                b.setCaigouid(rs.getLong("caigouid"));
+                b.setCommodityid(rs.getLong("commodityid"));
+                b.setWarehouseid(rs.getLong("warehouseid"));
+                Warehouse a = new Warehouse();
+                a.setWhID(rs.getLong("whID"));
+                a.setsID(rs.getLong("sID"));
+                a.setWhName(rs.getString("whName"));
+                a.setWhAddress(rs.getNString("whAddress"));
+                a.setCapacity(rs.getLong("capacity"));
+                a.setLeftCapacity(rs.getLong("leftCapacity"));
+                b.setWhnum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
     }
 }
 

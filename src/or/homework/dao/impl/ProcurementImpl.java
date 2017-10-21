@@ -2,7 +2,9 @@ package or.homework.dao.impl;
 
 import or.homework.dao.IProcurementDao;
 import or.homework.util.ConnectJDBC;
+import or.homework.vo.Commodity;
 import or.homework.vo.Procurement;
+import or.homework.vo.Purchase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcurementImpl implements IProcurementDao{
+public class ProcurementImpl implements IProcurementDao {
     @Override
     public void add(Procurement procurement) {
         String sql = "INSERT INTO Procurement (pnum,commodityid,purchaseid) VALUES (?,?,?)";
@@ -100,7 +102,7 @@ public class ProcurementImpl implements IProcurementDao{
         }
         if(procurement.getPnum()!=null){
             sql+=" and pnum ";
-            params.add(procurement.getPcnum());
+            params.add(procurement.getPnum());
         }
         if(procurement.getCommodityid()!=null){
             sql+=" and commodityid ";
@@ -142,7 +144,91 @@ public class ProcurementImpl implements IProcurementDao{
             }
 
         }
-        return null;
+        return result;
+    }
+
+    @Override
+    public List<Procurement> query(Procurement procurement) {
+        String sql = "SELECT * FROM Procurement AS P,Commodity AS C WHERE P.pid = C.cID";
+        List<Object> params = new ArrayList<Object>();
+        List<Procurement> result = new ArrayList<Procurement>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Procurement b = new Procurement();
+                b.setPid(rs.getLong("pid"));
+                b.setPnum(rs.getLong("pnum"));
+                b.setCommodityid(rs.getLong("commodityidn"));
+                b.setPurchaseid(rs.getLong("purchaseid"));
+                Commodity a = new Commodity();
+                a.setcID(rs.getLong("cID"));
+                a.setcName(rs.getString("cName"));
+                a.setUnits(rs.getString("units"));
+                a.setOrigin(rs.getNString("origin"));
+                a.setBrand(rs.getString("brand"));
+                b.setNum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public List<Procurement> queryone(Procurement procurement) {
+        String sql = "SELECT * FROM Procurement AS P,Purchase AS C WHERE P.pid = C.pchID";
+        List<Object> params = new ArrayList<Object>();
+        List<Procurement> result = new ArrayList<Procurement>();
+        Connection conn = ConnectJDBC.getConn();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Procurement b = new Procurement();
+                b.setPid(rs.getLong("pid"));
+                b.setPnum(rs.getLong("pnum"));
+                b.setCommodityid(rs.getLong("commodityidn"));
+                b.setPurchaseid(rs.getLong("purchaseid"));
+                Purchase a = new Purchase();
+                a.setPchID(rs.getLong("pchID"));
+                a.setPchMoney(rs.getLong("pchMoney"));
+                a.setPchDate(rs.getDate("pchDate"));
+                a.setStaffid(rs.getLong("staffid"));
+                a.setSupplierid(rs.getLong("supplierid"));
+                b.setPcnum(a);
+                result.add(b);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return result;
     }
 }
 

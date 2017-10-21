@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class ConnectJDBC {
     private static Connection conn;private static String DBURL = "jdbc:oracle://localhost:3306/java55";
-    private static String DBUSER = "root";
-    private static String DBPASS= "123456";
+    private static String DBUSER = "SYSTEM";
+    private static String DBPASS= "Admin117";
     private static String DBDRIVER = "oracle.jdbc.driver.OracleDriver";
     static {
         try {
