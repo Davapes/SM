@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="../css/examples.css">
+    <script language="JavaScript">
+        function sub() {
+            var user = document.regist.userName.value;
+            var pass = document.regist.userPass.value;
+            var repass = document.regist.rePass.value;
+            if (user==null || user==""){
+                alert("请填写用户名");
+                document.regist.userName.focus();
+            }
+            else if(pass==null || pass==""){
+                alert("请填写密码");
+                document.regist.userPass.focus();
+            }
+            else if(repass==null || repass==""){
+                alert("请确认密码");
+                document.regist.rePass.focus();
+            }
+            else if(pass!=repass){
+                alert("确认密码不相符!");
+                document.regist.rePass.value="";
+                document.regist.rePass.focus();
+            }
+            else{
+                document.regist.submit();
+            }
+        }
+        function res() {
+            document.getElementsById("userName").value="";
+            document.getElementsbyId("userPass").value="";
+            document.getElementsById("rePass").value="";
+            var chs = document.getElementsByName("role");
+            for(var i = 0;i<chs.length;i++){
+                chs[i].staus='false';
+            }
+        }
+    </script>
+    <title>Title</title>
+    <link herf="../css/mp.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<form method="post" name="regist" action="AddUserServlet">
+    <center>
+        <table>
+            <tr align="center" valign="middle">
+                <td>
+            <TABLE style="width: 130%" cellSpacing=0 cellpadding="0" align="center">
+                <TBODY>
+                <TR valign="middle">
+                    <td class="title_td" height=12><center>新增用户信息</center></td>
+                </TR>
+                <TD>
+
+                    <table style="width: 130%;">
+                        <tr>
+
+                            <td class="item_td" width="26%">
+                                用户名:</td>
+                        <td class="input_td">
+                            <input type="text" name="userName" value="" style="width: 100%" class="input_input" size="30">
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="item_td" width="26%">
+                                密码:</td>
+                        <td class="input_td">
+                        <input type="password" name="userPass" value="" style="width: 100%" class="input_input" size="30">
+                        </td>
+                        </tr>
+
+                        <tr>
+
+                            <td class="item_td" width="26%">
+                                确认密码:</td>
+                        <td class="input_td">
+                                <input type="password" name="rePass" value="" style="width: 100%" class="input_input" size="30">
+                        </td>
+                        </tr>
+
+                        <tr>
+                                <td class="item_td" width="26%">
+                                    用户类别:</td>
+                        <td class="input_td">&nbsp;
+                            <input name="role" type="radio" value="0" checked>普通用户&nbsp;
+                        <input name="role" type="radio" value="1">管理员
+                        </td>
+                        </tr>
+
+                    </table>
+                </TD>
+
+                </TR>
+
+                <tr>
+
+                <td colspan="2" align="center">
+                &nbsp;
+                <button onclick="res()" style="width: 20%">
+                    重置</button>&nbsp;
+                    <button onclick="sub()" style="width: 20%">提交</button>
+                </td>
+                </tr>
+                </TBODY>
+            </TABLE>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+</form>
+</body>
+</html>

@@ -28,12 +28,12 @@
   </script>
 </head>
 <body class="login">
-<%
+<%--<%
   Cookies[] cookies=request.getCookies();
   String userName="";
   if(cookies!=null&&cookies.length>0){
   }
-%>
+%>--%>
 <div class="login_m">
   <div class="login_logo"><img src="image/logo.png" width="196" height="46"></div>
   <div class="login_boder">
