@@ -42,12 +42,12 @@ public class LoginImpl implements ILoginDao{
 
     @Override
     public void delete(Login login) {
-        String sql = "DELETE FROM Login WHERE id=?";
+        String sql = "DELETE FROM Login WHERE staffid=?";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setLong(1, login.getId());
+            pst.setLong(1, login.getStaffid());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -66,7 +66,7 @@ public class LoginImpl implements ILoginDao{
 
     @Override
     public void update(Login login) {
-        String sql = "UPDATE Login SET username = ?,password = ?,staffid = ? WHERE id = ? ";
+        String sql = "UPDATE Login SET username = ?,password = ? WHERE staffid = ? ";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
@@ -74,7 +74,6 @@ public class LoginImpl implements ILoginDao{
             pst.setString(1,login.getUsername());
             pst.setString(2, login.getPassword());
             pst.setLong(3,login.getStaffid());
-            pst.setLong(4,login.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -94,39 +93,24 @@ public class LoginImpl implements ILoginDao{
     @Override
     public List<Login> select(Login login) {
         String sql="SELECT * FROM Login WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Login>result=new ArrayList<Login>();
-        if(login.getId()!=null){
-            sql+=" and id ";
-            params.add(login.getId());
-        }
         if(login.getUsername()!=null){
-            sql+=" and username ";
-            params.add(login.getUsername());
+            sql+=" and username = "+"'"+login.getUsername()+"'";
+
         }
         if(login.getPassword()!=null){
-            sql+=" and password ";
-            params.add(login.getPassword());
+            sql+=" and password = "+"'"+login.getPassword()+"'";
         }
         if(login.getStaffid()!=null){
-            sql+=" and staffid ";
-            params.add(login.getStaffid());
+            sql+=" and staffid = "+"'"+login.getStaffid()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof String){
-                    pst.setString(i+1, (String) params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Login b=new Login();
-                b.setId(rs.getLong("id"));
                 b.setUsername(rs.getString("username"));
                 b.setPassword(rs.getString("password"));
                 b.setStaffid(rs.getLong("staffid"));

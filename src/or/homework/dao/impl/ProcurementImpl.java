@@ -16,14 +16,15 @@ import java.util.List;
 public class ProcurementImpl implements IProcurementDao {
     @Override
     public void add(Procurement procurement) {
-        String sql = "INSERT INTO Procurement (pnum,commodityid,purchaseid) VALUES (?,?,?)";
+        String sql = "INSERT INTO Procurement (commodityid,purchaseid,pnum,pje) VALUES (?,?,?,?)";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setLong(1,procurement.getPnum());
-            pst.setLong(2, procurement.getCommodityid());
-            pst.setLong(3, procurement.getPurchaseid());
+            pst.setLong(1, procurement.getCommodityid());
+            pst.setLong(2, procurement.getPurchaseid());
+            pst.setLong(3,procurement.getPnum());
+            pst.setLong(4, procurement.getPje());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -66,15 +67,16 @@ public class ProcurementImpl implements IProcurementDao {
 
     @Override
     public void update(Procurement procurement) {
-        String sql = "UPDATE Procurement SET pnum = ?,commodityid = ?, purchaseid = ? WHERE pid = ? ";
+        String sql = "UPDATE Procurement SET commodityid = ?, purchaseid = ?,pnum = ?,pje = ? WHERE pid = ? ";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setLong(1, procurement.getPnum());
-            pst.setLong(2, procurement.getCommodityid());
-            pst.setLong(3,procurement.getPurchaseid());
-            pst.setLong(4, procurement.getPid());
+            pst.setLong(1, procurement.getCommodityid());
+            pst.setLong(2,procurement.getPurchaseid());
+            pst.setLong(3, procurement.getPnum());
+            pst.setLong(4, procurement.getPje());
+            pst.setLong(5, procurement.getPid());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -94,40 +96,34 @@ public class ProcurementImpl implements IProcurementDao {
     @Override
     public List<Procurement> select(Procurement procurement) {
         String sql="SELECT * FROM Procurement WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Procurement>result=new ArrayList<Procurement>();
         if(procurement.getPid()!=null){
-            sql+=" and pid ";
-            params.add(procurement.getPid());
-        }
-        if(procurement.getPnum()!=null){
-            sql+=" and pnum ";
-            params.add(procurement.getPnum());
+            sql+=" and pid = "+"'"+procurement.getPid()+"'";
         }
         if(procurement.getCommodityid()!=null){
-            sql+=" and commodityid ";
-            params.add(procurement.getCommodityid());
+            sql+=" and commodityid = "+"'"+procurement.getCommodityid()+"'";
         }
         if(procurement.getPurchaseid()!=null){
-            sql+=" and purchaseid ";
-            params.add(procurement.getPurchaseid());
+            sql+=" and purchaseid = "+"'"+procurement.getPurchaseid()+"'";
+        }
+        if(procurement.getPnum()!=null){
+            sql+=" and pnum = "+"'"+procurement.getPnum()+"'";
+        }
+        if(procurement.getPje()!=null){
+            sql+=" and pje = "+"'"+procurement.getPje()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Procurement b=new Procurement();
                 b.setPid(rs.getLong("pid"));
-                b.setPnum(rs.getLong("pnum"));
                 b.setCommodityid(rs.getLong("commodityid"));
                 b.setPurchaseid(rs.getLong("purchaseid"));
+                b.setPnum(rs.getLong("pnum"));
+                b.setPje(rs.getLong("pje"));
                 result.add(b);
             }
         } catch (SQLException e) {
@@ -160,15 +156,22 @@ public class ProcurementImpl implements IProcurementDao {
             while (rs.next()) {
                 Procurement b = new Procurement();
                 b.setPid(rs.getLong("pid"));
-                b.setPnum(rs.getLong("pnum"));
-                b.setCommodityid(rs.getLong("commodityidn"));
+                b.setCommodityid(rs.getLong("commodityid"));
                 b.setPurchaseid(rs.getLong("purchaseid"));
+                b.setPnum(rs.getLong("pnum"));
+                b.setPje(rs.getLong("pje"));
                 Commodity a = new Commodity();
                 a.setcID(rs.getLong("cID"));
                 a.setcName(rs.getString("cName"));
                 a.setUnits(rs.getString("units"));
-                a.setOrigin(rs.getNString("origin"));
+                a.setOrigin(rs.getString("origin"));
                 a.setBrand(rs.getString("brand"));
+                a.setCprice(rs.getLong("cprice"));
+                a.setJinjia(rs.getLong("jinjia"));
+                a.setCgrq(rs.getDate("cgrq"));
+                a.setSupplierid(rs.getLong("supplierid"));
+                a.setBaozhiqi(rs.getString("baozhiqi"));
+                a.setWarehouseid(rs.getLong("warehouseid"));
                 b.setNum(a);
                 result.add(b);
             }
@@ -202,9 +205,10 @@ public class ProcurementImpl implements IProcurementDao {
             while (rs.next()) {
                 Procurement b = new Procurement();
                 b.setPid(rs.getLong("pid"));
-                b.setPnum(rs.getLong("pnum"));
-                b.setCommodityid(rs.getLong("commodityidn"));
+                b.setCommodityid(rs.getLong("commodityid"));
                 b.setPurchaseid(rs.getLong("purchaseid"));
+                b.setPnum(rs.getLong("pnum"));
+                b.setPje(rs.getLong("pje"));
                 Purchase a = new Purchase();
                 a.setPchID(rs.getLong("pchID"));
                 a.setPchMoney(rs.getLong("pchMoney"));

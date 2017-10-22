@@ -1,18 +1,10 @@
 package or.homework.vo;
 
 public class Login {
-    private Long id;
     private String username;
     private String password;
     private Long staffid;
     private Staff sid;
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

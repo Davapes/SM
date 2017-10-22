@@ -16,14 +16,16 @@ import java.util.List;
 public class GoodsSellImpl implements IGoodsSellDao {
     @Override
     public void add(GoodsSell goodsSell) {
-        String sql = "INSERT INTO GoodsSell (gsNum,commodityid,merchandisingid) VALUES (?,?.?)";
+        String sql = "INSERT INTO GoodsSell (commodityid,merchandisingid,gsNum,gsje,gsylje) VALUES (?.?,?,?,?)";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setLong(1,goodsSell.getGsNum());
-            pst.setLong(2, goodsSell.getCommodityid());
-            pst.setLong(3, goodsSell.getMerchandisingid());
+            pst.setLong(1, goodsSell.getCommodityid());
+            pst.setLong(2, goodsSell.getMerchandisingid());
+            pst.setLong(3,goodsSell.getGsNum());
+            pst.setLong(4, goodsSell.getGsje());
+            pst.setLong(5, goodsSell.getGsylje());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -66,15 +68,17 @@ public class GoodsSellImpl implements IGoodsSellDao {
 
     @Override
     public void update(GoodsSell goodsSell) {
-        String sql = "UPDATE GoodsSell SET gsNum = ?,commodityid = ?, merchandisingid = ? WHERE gsID = ? ";
+        String sql = "UPDATE GoodsSell SET commodityid = ?, merchandisingid = ?,gsNum = ?,gsje = ?,gsylje = ? WHERE gsID = ? ";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            pst.setLong(1, goodsSell.getGsNum());
-            pst.setLong(2, goodsSell.getCommodityid());
-            pst.setLong(3,goodsSell.getMerchandisingid());
-            pst.setLong(4, goodsSell.getGsID());
+            pst.setLong(1, goodsSell.getCommodityid());
+            pst.setLong(2,goodsSell.getMerchandisingid());
+            pst.setLong(3,goodsSell.getGsNum());
+            pst.setLong(4, goodsSell.getGsje());
+            pst.setLong(5,goodsSell.getGsylje());
+            pst.setLong(6, goodsSell.getGsID());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -97,37 +101,36 @@ public class GoodsSellImpl implements IGoodsSellDao {
         List<Object>params=new ArrayList<Object>();
         List<GoodsSell>result=new ArrayList<GoodsSell>();
         if(goodsSell.getGsID()!=null){
-            sql+=" and gsID ";
-            params.add(goodsSell.getGsID());
-        }
-        if(goodsSell.getGsNum()!=null){
-            sql+=" and gsNum ";
-            params.add(goodsSell.getGsNum());
+            sql+=" and gsID = "+"'"+goodsSell.getGsID()+"'";
         }
         if(goodsSell.getCommodityid()!=null){
-            sql+=" and commodityid ";
-            params.add(goodsSell.getCommodityid());
+            sql+=" and commodityid = "+"'"+goodsSell.getCommodityid()+"'";
         }
         if(goodsSell.getMerchandisingid()!=null){
-            sql+=" and merchandisingid ";
-            params.add(goodsSell.getMerchandisingid());
+            sql+=" and merchandising = "+"'"+goodsSell.getMerchandisingid()+"'";
+        }
+        if(goodsSell.getGsNum()!=null){
+            sql+=" and gsNum = "+"'"+goodsSell.getGsNum()+"'";
+        }
+        if(goodsSell.getGsje()!=null){
+            sql+=" and gsje = "+"'"+goodsSell.getGsje()+"'";
+        }
+        if(goodsSell.getGsylje()!=null){
+            sql+=" and gsylje = "+"'"+goodsSell.getGsylje()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 GoodsSell b=new GoodsSell();
                 b.setGsID(rs.getLong("gsID"));
-                b.setGsNum(rs.getLong("gsNum"));
                 b.setCommodityid(rs.getLong("commodityid"));
                 b.setMerchandisingid(rs.getLong("merchandisingid"));
+                b.setGsNum(rs.getLong("gsNum"));
+                b.setGsje(rs.getLong("gsje"));
+                b.setGsylje(rs.getLong("gsylje"));
                 result.add(b);
             }
         } catch (SQLException e) {
@@ -160,15 +163,23 @@ public class GoodsSellImpl implements IGoodsSellDao {
             while (rs.next()) {
                 GoodsSell b = new GoodsSell();
                 b.setGsID(rs.getLong("gsID"));
-                b.setGsNum(rs.getLong("gsNum"));
                 b.setCommodityid(rs.getLong("commodityid"));
                 b.setMerchandisingid(rs.getLong("merchandisingid"));
+                b.setGsNum(rs.getLong("gsNum"));
+                b.setGsje(rs.getLong("gsje"));
+                b.setGsylje(rs.getLong("gsylje"));
                 Commodity a = new Commodity();
                 a.setcID(rs.getLong("cID"));
                 a.setcName(rs.getString("cName"));
                 a.setUnits(rs.getString("units"));
-                a.setOrigin(rs.getNString("origin"));
+                a.setOrigin(rs.getString("origin"));
                 a.setBrand(rs.getString("brand"));
+                a.setCprice(rs.getLong("cprice"));
+                a.setJinjia(rs.getLong("jinjia"));
+                a.setCgrq(rs.getDate("cgrq"));
+                a.setSupplierid(rs.getLong("supplierid"));
+                a.setBaozhiqi(rs.getString("baozhiqi"));
+                a.setWarehouseid(rs.getLong("warehouseid"));
                 b.setNum(a);
                 result.add(b);
             }
@@ -202,13 +213,16 @@ public class GoodsSellImpl implements IGoodsSellDao {
             while (rs.next()) {
                 GoodsSell b = new GoodsSell();
                 b.setGsID(rs.getLong("gsID"));
-                b.setGsNum(rs.getLong("gsNum"));
                 b.setCommodityid(rs.getLong("commodityid"));
                 b.setMerchandisingid(rs.getLong("merchandisingid"));
+                b.setGsNum(rs.getLong("gsNum"));
+                b.setGsje(rs.getLong("gsje"));
+                b.setGsylje(rs.getLong("gsylje"));
                 Merchandising a = new Merchandising();
                 a.setmID(rs.getLong("mID"));
                 a.setmAmount(rs.getLong("mAmount"));
                 a.setProfit(rs.getLong("Profit"));
+                a.setStaffid(rs.getLong("staffid"));
                 a.setmDate(rs.getDate("mDate"));
                 b.setMnum(a);
                 result.add(b);

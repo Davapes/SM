@@ -97,43 +97,29 @@ public class SupplierImpl implements ISupplierDao {
     public List<Supplier> select(Supplier supplier) {
 
         String sql="SELECT * FROM Supplier WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Supplier>result=new ArrayList<Supplier>();
         if(supplier.getSupID()!=null){
-            sql+=" and supID ";
-            params.add(supplier.getSupID());
+            sql+=" and supID = "+"'"+supplier.getSupID()+"'";
         }
         if(supplier.getSupName()!=null){
-            sql+=" and supName ";
-            params.add(supplier.getSupName());
+            sql+=" and supName = "+"'"+supplier.getSupName()+"'";
         }
         if(supplier.getSupAdds()!=null){
-            sql+=" and supAdds ";
-            params.add(supplier.getSupAdds());
+            sql+=" and supAdds = "+"'"+supplier.getSupAdds()+"'";
         }
         if(supplier.getSupPhone()!=null){
-            sql+=" and supPhone ";
-            params.add(supplier.getSupPhone());
+            sql+=" and supPhone = "+"'"+supplier.getSupPhone()+"'";
         }
         if(supplier.getSupAccount()!=null){
-            sql+=" and supAccount ";
-            params.add(supplier.getSupID());
+            sql+=" and supAccount = "+"'"+supplier.getSupAccount()+"'";
         }
         if(supplier.getSupBank()!=null){
-            sql+=" and supBank ";
-            params.add(supplier.getSupBank());
+            sql+=" and supBank = "+"'"+supplier.getSupBank()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof String){
-                    pst.setString(i+1, (String)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Supplier b=new Supplier();

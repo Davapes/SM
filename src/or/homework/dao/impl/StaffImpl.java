@@ -99,57 +99,38 @@ public class StaffImpl implements IStaffDao {
     @Override
     public List<Staff> select(Staff staff) {
         String sql="SELECT * FROM Staff WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Staff>result=new ArrayList<Staff>();
         if(staff.getsID()!=null){
-            sql+=" and sID ";
-            params.add(staff.getsID());
+            sql+=" and sID = "+"'"+staff.getsID()+"'";
         }
         if(staff.gettID()!=null){
-            sql+=" and tID ";
-            params.add(staff.gettID());
+            sql+=" and tID = "+"'"+staff.gettID()+"'";
         }
         if(staff.getsName()!=null){
-            sql+=" and sName ";
-            params.add(staff.getsName());
+            sql+=" and sName = "+"'"+staff.getsName()+"'";
         }
         if(staff.getsSex()!=null){
-            sql+=" and sSex ";
-            params.add(staff.getsSex());
+            sql+=" and sSex = "+"'"+staff.getsSex()+"'";
         }
         if(staff.getsPhone()!=null){
-            sql+=" and sPhone ";
-            params.add(staff.getsPhone());
+            sql+=" and sPhone = "+"'"+staff.getsPhone()+"'";
         }
         if(staff.getsSalary()!=null){
-            sql+=" and sSalary ";
-            params.add(staff.getsSalary());
+            sql+=" and sSalary = "+"'"+staff.getsSalary()+"'";
         }
         if(staff.getsDate()!=null){
-            sql+=" and sDate ";
-            params.add(staff.getsDate());
+            sql+=" and sDate = "+"'"+staff.getsDate()+"'";
         }
         if(staff.getsAdds()!=null){
-            sql+=" and sAdds ";
-            params.add(staff.getsAdds());
+            sql+=" and sAdds = "+"'"+staff.getsAdds()+"'";
         }
         if(staff.getsProfessional()!=null){
-            sql+=" and sProfessional ";
-            params.add(staff.getsProfessional());
+            sql+=" and sProfessional = "+"'"+staff.getsProfessional()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof String){
-                    pst.setString(i+1, (String)params.get(i));
-                }else if(params.get(i) instanceof Date){
-                    pst.setDate(i+1, (Date)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Staff b=new Staff();

@@ -6,10 +6,10 @@ public class Exit {
     private Long exitID;
     private Long staffid;
     private Long snumation;
-    private Date exitDate;
-    private Long exitNum;
     private Long commodityid;
     private Long warehouseid;
+    private Date exitDate;
+    private Long exitNum;
     private Staff number;
     private Staff numation;
     private Commodity num;

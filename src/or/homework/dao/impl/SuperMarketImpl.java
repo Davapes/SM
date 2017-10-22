@@ -92,35 +92,23 @@ public class SuperMarketImpl implements ISuperMarketDao {
     @Override
     public List<SuperMarket> select(SuperMarket superMarket) {
         String sql="SELECT * FROM SuperMarket WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<SuperMarket>result=new ArrayList<SuperMarket>();
         if(superMarket.getSmID()!=null){
-            sql+=" and smID ";
-            params.add(superMarket.getSmID());
+            sql+=" and smID = "+"'"+superMarket.getSmID()+"'";
         }
         if(superMarket.getSmName()!=null){
-            sql+=" and smName ";
-            params.add(superMarket.getSmName());
+            sql+=" and smName = "+"'"+superMarket.getSmName()+"'";
         }
         if(superMarket.getManger()!=null){
-            sql+=" and manger ";
-            params.add(superMarket.getManger());
+            sql+=" and manger = "+"'"+superMarket.getManger()+"'";
         }
         if(superMarket.getSmAdds()!=null){
-            sql+=" and smAdds ";
-            params.add(superMarket.getSmAdds());
+            sql+=" and smAdds = "+"'"+superMarket.getSmAdds()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof String){
-                    pst.setString(i+1, (String)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 SuperMarket b=new SuperMarket();

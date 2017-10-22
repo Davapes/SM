@@ -7,7 +7,24 @@ public class Merchandising {
     private Long mID;
     private Long mAmount;//销售金额
     private Long Profit;//盈利金额
+    private Long staffid;//销售员id
     private Date mDate;
+    private Staff staff;//销售员对象
+    public Long getStaffid() {
+        return staffid;
+    }
+
+    public void setStaffid(Long staffid) {
+        this.staffid = staffid;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
 
     public Long getmID() {
         return mID;

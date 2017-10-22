@@ -93,39 +93,26 @@ public class PurchaseImopl implements IPurchaseDao {
     @Override
     public List<Purchase> select(Purchase purchase) {
         String sql="SELECT * FROM Purchase WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Purchase>result=new ArrayList<Purchase>();
         if(purchase.getPchID()!=null){
-            sql+=" and pchID ";
-            params.add(purchase.getPchID());
+            sql+=" and pchID = "+"'"+purchase.getPchID()+"'";
         }
         if(purchase.getPchMoney()!=null){
-            sql+=" and pchMoney ";
-            params.add(purchase.getPchMoney());
+            sql+=" and pchMoney = "+"'"+purchase.getPchMoney()+"'";
         }
         if(purchase.getPchDate()!=null){
-            sql+=" and pchDate ";
-            params.add(purchase.getPchDate());
+            sql+=" and pchDate = "+"'"+purchase.getPchDate()+"'";
         }
         if(purchase.getStaffid()!=null){
-            sql+=" and staffid ";
-            params.add(purchase.getStaffid());
+            sql+=" and staffid = "+"'"+purchase.getStaffid()+"'";
         }
         if(purchase.getSupplierid()!=null){
-            sql+=" and supplierid ";
-            params.add(purchase.getSupplierid());
+            sql+=" and supplierid = "+"'"+purchase.getSupplierid()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof Date){
-                    pst.setDate(i+1, (Date) params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Purchase b=new Purchase();

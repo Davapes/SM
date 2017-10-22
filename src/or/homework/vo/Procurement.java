@@ -2,11 +2,22 @@ package or.homework.vo;
 //商品采購
 public class Procurement {
     private Long pid;
-    private Long pnum;
     private Long commodityid;
     private Long purchaseid;
+    private Long pnum;//采购数量
+    private Long pje;//采购金额
+
     private Commodity num;
     private Purchase pcnum;
+
+    public Long getPje() {
+        return pje;
+    }
+
+    public void setPje(Long pje) {
+        this.pje = pje;
+    }
+
     public Long getCommodityid() {
         return commodityid;
     }

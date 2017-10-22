@@ -101,47 +101,32 @@ public class ExitImpl implements IExitDao {
     @Override
     public List<Exit> select(Exit exit) {
         String sql="SELECT * FROM Exit WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Exit>result=new ArrayList<Exit>();
         if(exit.getExitID()!=null){
-            sql+=" and exitID ";
-            params.add(exit.getExitID());
+            sql+=" and exitID = "+"'"+exit.getExitID()+"'";
         }
         if(exit.getStaffid()!=null){
-            sql+=" and staffid ";
-            params.add(exit.getStaffid());
+            sql+=" and staffid = "+"'"+exit.getStaffid()+"'";
         }
         if(exit.getSnumation()!=null){
-            sql+=" and snumation ";
-            params.add(exit.getSnumation());
+            sql+=" and snumation = "+"'"+exit.getSnumation()+"'";
         }
         if(exit.getExitDate()!=null){
-            sql+=" and exitDate ";
-            params.add(exit.getExitDate());
+            sql+=" and exitDate = "+"'"+exit.getExitDate()+"'";
         }
         if(exit.getExitNum()!=null){
-            sql+=" and exitNum ";
-            params.add(exit.getExitNum());
+            sql+=" and exitNum = "+"'"+exit.getExitNum()+"'";
         }
         if(exit.getCommodityid()!=null){
-            sql+=" and commodityid ";
-            params.add(exit.getCommodityid());
+            sql+=" and commodityid = "+"'"+exit.getCommodityid()+"'";
         }
         if(exit.getWarehouseid()!=null){
-            sql+=" and warehouseid ";
-            params.add(exit.getWarehouseid());
+            sql+=" and warehouseid = "+"'"+exit.getWarehouseid()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }else if(params.get(i) instanceof Date){
-                    pst.setDate(i+1, (Date) params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Exit b=new Exit();

@@ -7,25 +7,25 @@ import or.homework.vo.Put;
 import or.homework.vo.Staff;
 import or.homework.vo.Warehouse;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PutImpl implements IPutDao {
     @Override
     public void add(Put put) {
-        String sql = "INSERT INTO Put (cangkuguanliid,caigouid,commodityid,warehouseid) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO Put (cangkuguanliid,supermarkid,commodityid,caigouid,warehouseid,putrq,putnum) VALUES (?,?,?,?.?.?.?)";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
             pst.setLong(1,put.getCangkuguanliid());
-            pst.setLong(2,put.getCaigouid());
+            pst.setLong(2,put.getSupermarkid());
             pst.setLong(3,put.getCommodityid());
-            pst.setLong(4,put.getWarehouseid());
+            pst.setLong(4,put.getCaigouid());
+            pst.setLong(5,put.getWarehouseid());
+            pst.setDate(6, (Date) put.getPutrq());
+            pst.setLong(7,put.getPutnum());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -68,16 +68,19 @@ public class PutImpl implements IPutDao {
 
     @Override
     public void update(Put put) {
-        String sql = "UPDATE Put SET cangkuguanliid = ?,caigouid = ?, commodityid = ?,warehouseid = ? WHERE putID = ? ";
+        String sql = "UPDATE Put SET cangkuguanliid = ?,supermarkid = ?, commodityid = ?,caigouid = ?,warehouseid = ?,putrq = ?,putnum = ? WHERE putID = ? ";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
             pst.setLong(1,put.getCangkuguanliid());
-            pst.setLong(2,put.getCaigouid());
+            pst.setLong(2,put.getSupermarkid());
             pst.setLong(3,put.getCommodityid());
-            pst.setLong(4,put.getWarehouseid());
-            pst.setLong(5,put.getPutID());
+            pst.setLong(4,put.getCaigouid());
+            pst.setLong(5,put.getWarehouseid());
+            pst.setDate(6, (Date) put.getPutrq());
+            pst.setLong(7,put.getPutnum());
+            pst.setLong(8,put.getPutID());
             pst.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -97,45 +100,46 @@ public class PutImpl implements IPutDao {
     @Override
     public List<Put> select(Put put) {
         String sql="SELECT * FROM Put WHERE 1=1 ";
-        List<Object>params=new ArrayList<Object>();
         List<Put>result=new ArrayList<Put>();
         if(put.getPutID()!=null){
-            sql+=" and putID ";
-            params.add(put.getPutID());
+            sql+=" and putID = "+"'"+put.getPutID()+"'";
         }
         if(put.getCangkuguanliid()!=null){
-            sql+=" and cangkuguanliid ";
-            params.add(put.getCangkuguanliid());
+            sql+=" and cangkuguanliid = "+"'"+put.getCangkuguanliid()+"'";
         }
-        if(put.getCaigouid()!=null){
-            sql+=" and caigouid ";
-            params.add(put.getCaigouid());
+        if(put.getSupermarkid()!=null){
+            sql+=" and supermarkid = "+"'"+put.getSupermarkid()+"'";
         }
         if(put.getCommodityid()!=null){
-            sql+=" and commodityid ";
-            params.add(put.getCommodityid());
+            sql+=" and commodityid = "+"'"+put.getCommodityid()+"'";
+        }
+        if(put.getCaigouid()!=null){
+            sql+=" and caigouid = "+"'"+put.getCaigouid()+"'";
         }
         if(put.getWarehouseid()!=null){
-            sql+=" and warehouseid ";
-            params.add(put.getWarehouseid());
+            sql+=" and warehouseid = "+"'"+put.getWarehouseid()+"'";
+        }
+        if(put.getPutrq()!=null){
+            sql+=" and putrq = "+"'"+put.getPutrq()+"'";
+        }
+        if(put.getPutnum()!=null){
+            sql+=" and putnum = "+"'"+put.getPutnum()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for(int i=0;i<params.size();i++){
-                if(params.get(i) instanceof Long){
-                    pst.setLong(i+1, (Long)params.get(i));
-                }
-            }
             ResultSet rs= pst.executeQuery();
             while(rs.next()){
                 Put b=new Put();
                 b.setPutID(rs.getLong("putID"));
                 b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
-                b.setCaigouid(rs.getLong("caigouid"));
+                b.setSupermarkid(rs.getLong("supermarkid"));
                 b.setCommodityid(rs.getLong("commodityid"));
+                b.setCaigouid(rs.getLong("caigouid"));
                 b.setWarehouseid(rs.getLong("warehouseid"));
+                b.setPutrq(rs.getDate("putrq"));
+                b.setPutnum(rs.getLong("putnum"));
                 result.add(b);
             }
         } catch (SQLException e) {
@@ -169,9 +173,12 @@ public class PutImpl implements IPutDao {
                 Put b = new Put();
                 b.setPutID(rs.getLong("putID"));
                 b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
-                b.setCaigouid(rs.getLong("caigouid"));
+                b.setSupermarkid(rs.getLong("supermarkid"));
                 b.setCommodityid(rs.getLong("commodityid"));
+                b.setCaigouid(rs.getLong("caigouid"));
                 b.setWarehouseid(rs.getLong("warehouseid"));
+                b.setPutrq(rs.getDate("putrq"));
+                b.setPutnum(rs.getLong("putnum"));
                 Staff a = new Staff();
                 a.setsID(rs.getLong("sID"));
                 a.settID(rs.getLong("tID"));
@@ -216,9 +223,12 @@ public class PutImpl implements IPutDao {
                 Put b = new Put();
                 b.setPutID(rs.getLong("putID"));
                 b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
-                b.setCaigouid(rs.getLong("caigouid"));
+                b.setSupermarkid(rs.getLong("supermarkid"));
                 b.setCommodityid(rs.getLong("commodityid"));
+                b.setCaigouid(rs.getLong("caigouid"));
                 b.setWarehouseid(rs.getLong("warehouseid"));
+                b.setPutrq(rs.getDate("putrq"));
+                b.setPutnum(rs.getLong("putnum"));
                 Staff a = new Staff();
                 a.setsID(rs.getLong("sID"));
                 a.settID(rs.getLong("tID"));
@@ -263,15 +273,24 @@ public class PutImpl implements IPutDao {
                 Put b = new Put();
                 b.setPutID(rs.getLong("putID"));
                 b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
-                b.setCaigouid(rs.getLong("caigouid"));
+                b.setSupermarkid(rs.getLong("supermarkid"));
                 b.setCommodityid(rs.getLong("commodityid"));
+                b.setCaigouid(rs.getLong("caigouid"));
                 b.setWarehouseid(rs.getLong("warehouseid"));
+                b.setPutrq(rs.getDate("putrq"));
+                b.setPutnum(rs.getLong("putnum"));
                 Commodity a = new Commodity();
                 a.setcID(rs.getLong("cID"));
                 a.setcName(rs.getString("cName"));
                 a.setUnits(rs.getString("units"));
-                a.setOrigin(rs.getNString("origin"));
+                a.setOrigin(rs.getString("origin"));
                 a.setBrand(rs.getString("brand"));
+                a.setCprice(rs.getLong("cprice"));
+                a.setJinjia(rs.getLong("jinjia"));
+                a.setCgrq(rs.getDate("cgrq"));
+                a.setSupplierid(rs.getLong("supplierid"));
+                a.setBaozhiqi(rs.getString("baozhiqi"));
+                b.setWarehouseid(rs.getLong("warehouseid"));
                 b.setNum(a);
                 result.add(b);
             }
@@ -306,9 +325,12 @@ public class PutImpl implements IPutDao {
                 Put b = new Put();
                 b.setPutID(rs.getLong("putID"));
                 b.setCangkuguanliid(rs.getLong("cangkuguanliid"));
-                b.setCaigouid(rs.getLong("caigouid"));
+                b.setSupermarkid(rs.getLong("supermarkid"));
                 b.setCommodityid(rs.getLong("commodityid"));
+                b.setCaigouid(rs.getLong("caigouid"));
                 b.setWarehouseid(rs.getLong("warehouseid"));
+                b.setPutrq(rs.getDate("putrq"));
+                b.setPutnum(rs.getLong("putnum"));
                 Warehouse a = new Warehouse();
                 a.setWhID(rs.getLong("whID"));
                 a.setsID(rs.getLong("sID"));

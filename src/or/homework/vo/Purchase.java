@@ -8,6 +8,7 @@ public class Purchase {
     private Date pchDate;
     private Long staffid;
     private Long supplierid;
+
     private Staff number;//采购员对象
     private Supplier numeration;//供应商对象
     public Long getStaffid() {

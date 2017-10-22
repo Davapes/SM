@@ -97,43 +97,29 @@ public class WarehouseImpl implements IWarehouseDao {
     @Override
     public List<Warehouse> select(Warehouse warehouse) {
         String sql = "SELECT * FROM Commodity WHERE 1=1 ";
-        List<Object> params = new ArrayList<Object>();
         List<Warehouse> result = new ArrayList<Warehouse>();
         if (warehouse.getWhID() != null) {
-            sql += " and whID ";
-            params.add(warehouse.getWhID());
+            sql+=" and whID = "+"'"+warehouse.getWhID()+"'";
         }
         if (warehouse.getsID() != null) {
-            sql += " and sID ";
-            params.add(warehouse.getsID());
+            sql+=" and sID = "+"'"+warehouse.getsID()+"'";
         }
         if (warehouse.getWhName() != null) {
-            sql += " and whName ";
-            params.add(warehouse.getWhName());
+            sql+=" and whName = "+"'"+warehouse.getWhName()+"'";
         }
         if (warehouse.getWhAddress() != null) {
-            sql += " and whAddress ";
-            params.add(warehouse.getWhAddress());
+            sql+=" and whAddress = "+"'"+warehouse.getWhAddress()+"'";
         }
         if (warehouse.getCapacity() != null) {
-            sql += " and capacity ";
-            params.add(warehouse.getCapacity());
+            sql+=" and capacity = "+"'"+warehouse.getCapacity()+"'";
         }
         if (warehouse.getLeftCapacity() != null) {
-            sql += " and leftCapacity ";
-            params.add(warehouse.getLeftCapacity());
+            sql+=" and leftCapacity = "+"'"+warehouse.getLeftCapacity()+"'";
         }
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sql);
-            for (int i = 0; i < params.size(); i++) {
-                if (params.get(i) instanceof Long) {
-                    pst.setLong(i + 1, (Long) params.get(i));
-                } else if (params.get(i) instanceof String) {
-                    pst.setString(i + 1, (String) params.get(i));
-                }
-            }
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Warehouse b = new Warehouse();
