@@ -91,7 +91,7 @@ public class LoginImpl implements ILoginDao{
             pst = conn.prepareStatement(sql);
 
             ResultSet rs= pst.executeQuery();
-            while(rs.next()){
+            while(rs.wasNull() == true){
                 Login b=new Login();
                 b.setUsername(rs.getString("username"));
                 b.setPassword(rs.getString("password"));
