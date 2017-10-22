@@ -3,4 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <servlet>
+        <display-name>SearchStaffServlet</display-name>
+        <servlet-name>SearchStaffServlet</servlet-name>
+        <servlet-class>sevlet.admin.SearchStaffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchStaffServlet</servlet-name>
+        <url-pattern>/SearchStaffServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

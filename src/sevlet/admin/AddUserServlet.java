@@ -1,6 +1,8 @@
 package sevlet.admin;
 
+import or.homework.dao.impl.LoginImpl;
 import or.homework.util.ConnectJDBC;
+import or.homework.vo.Login;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -45,13 +47,21 @@ public class AddUserServlet extends HttpServlet{
         String pwd = ctx.getInitParameter("pwd");       //获取数据库密码
         */
         ConnectJDBC db = new ConnectJDBC();
-        User usr = new User();
+        LoginImpl usr = new LoginImpl();
+        Login login = new Login();
         try{
             //连接数据库
             db.getConn();
             //向user表中插入一条记录
-            usr.add(username,userpass,role);
-            int rs = db.
+            login.setUsername(username);
+            login.setPassword(userpass);
+            //login.setStaffid(role);
+            usr.add(login);
+        }//catch (ClassNotFoundException e){
+           // e.printStackTrace();
+        // }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
     }
