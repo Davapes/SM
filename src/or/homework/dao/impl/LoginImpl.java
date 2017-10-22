@@ -124,7 +124,7 @@ public class LoginImpl implements ILoginDao{
                 }
             }
             ResultSet rs= pst.executeQuery();
-            while(rs.next()){
+            while(rs.wasNull() == true){
                 Login b=new Login();
                 b.setId(rs.getLong("id"));
                 b.setUsername(rs.getString("username"));

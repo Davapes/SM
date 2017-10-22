@@ -1,6 +1,6 @@
                 <%@page language="java" contentType="text/html;charset=UTF-8"%>
-                <%@page import="com.dh.entity.Good"%>
-                <%@page import="java.util.List"%>
+                <%@page import="or.homework.vo.Commodity"%>
+                <%@page import="java.util.*"%>
                 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                 <html>
                 <head>
@@ -23,14 +23,14 @@
                                  }
                                  }
                                  function addIt(){
-                                 window.parent.frmMain.location="addGood.html";
+                                 window.parent.frmMain.location="addCommodity.html";
                                  }
                 </script>
                 </head>
                 <body scroll="no">
-                <!--如果货物列表为空，跳到SearchGoodServlet处理-->
-                <c:if test="${GoodList==null}">
-                <jsp:forward page="SearchGoodAdminServlet"></jsp:forward>
+                <!--如果货物列表为空，跳到SearchCommodityServlet处理-->
+                <c:if test="${CommodityList==null}">
+                <jsp:forward page="SearchCommodityAdminServlet"></jsp:forward>
                 </c:if>
                 <table width="100%" height="100%"border="0" cellspacing="0" cellpadding="0">
                 <tr style="height:2%">
@@ -44,12 +44,12 @@
                 <tr style="height:96%">
                 <td>
                 <form method="POST"name="search"
-                action="SearchGoodAdminServlet">
+                action="SearchCommodityAdminServlet">
                 <table width="70%">
                 <tr>
                 <td width="10%"class="item_td">&nbsp;商品名称:</td>
                 <td class="input_td"style="width:20%">
-                <input type="text"      name="goodName" size="30" style="width:100%" class="input_input">
+                <input type="text"      name="CommodityName" size="30" style="width:100%" class="input_input">
                 </td>
                 <td style="width:1%">&nbsp;</td>
                 <td width="10%"class="item_id">&nbsp;商品公司:</td>
@@ -117,28 +117,28 @@
                                 </tr>
                         </thead>
                         <tbody>
-                                <c:forEach var="Good"items="${GoodList}"
+                                <c:forEach var="Commodity"items="${CommodityList}"
                                         varStatus="status">
                                         <tr>
                                                 <td align="center"width="1%">
                                                 <input type="checkbox"
-                                                        name="userId"value="${Good.QS}"
+                                                        name="userId"value="${Commodity.QS}"
                                                         class="input_radio"></td>
                                                 <td align="center">${status.count}</td>
-                                                <td>${Good.goodName}</td>
+                                                <td>${Commodity.CommodityName}</td>
                                                 <td align="center">
                                                 <c:choose>
-                                                <c:when test="${Good.publisherID==1}">
+                                                <c:when test="${Commodity.publisherID==1}">
                                                                 雀巢</c:when>
-                                                <c:when test="${Good.publisherID==2}">
+                                                <c:when test="${Commodity.publisherID==2}">
                                                                 可口可乐</c:when>
-                                                <c:when test="${Good.publisherID==3}">
+                                                <c:when test="${Commodity.publisherID==3}">
                                                                 徐福记</c:when>
                                                 </c:choose></td>
-                                                <td align="center">${Good.QS}</td>
-                                                <td align="center">${Good.price}</td>
+                                                <td align="center">${Commodity.QS}</td>
+                                                <td align="center">${Commodity.price}</td>
                                                 <td align="center" nowrap="nowrap">
-                                                ${Good.count}</td>
+                                                ${Commodity.count}</td>
                                         </tr>
                                         </c:forEach>
                                 </tbody>
