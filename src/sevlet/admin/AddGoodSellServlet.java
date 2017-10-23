@@ -2,10 +2,12 @@ package sevlet.admin;
 
 import or.homework.dao.impl.CommodityImpl;
 import or.homework.dao.impl.ExitImpl;
+import or.homework.dao.impl.GoodsSellImpl;
 import or.homework.dao.impl.LoginImpl;
 import or.homework.util.ConnectJDBC;
 import or.homework.vo.Commodity;
 import or.homework.vo.Exit;
+import or.homework.vo.GoodsSell;
 import or.homework.vo.Login;
 
 import javax.servlet.ServletContext;
@@ -28,7 +30,7 @@ public class AddGoodSellServlet extends HttpServlet{
         //将输入转换为中文
         request.setCharacterEncoding("GBK");
         //设置输出为中文
-        response.setContentType("text/html;charst=GBK");
+        response.setContentType("text/html;charset=GBK");
         //获取输出流
         PrintWriter out = response.getWriter();
 
@@ -45,24 +47,24 @@ public class AddGoodSellServlet extends HttpServlet{
         Long commodityid = Long.valueOf(request.getParameter("commodityID"));
         Long merchandisingid = Long.valueOf(request.getParameter("merchandisingID"));
         Long gsnum = Long.valueOf(request.getParameter("gsNum"));
-        Long gsmoney = Long.valueOf(request.getParameter("gsMoney");
-        Long gsylje
+        Long gsje = Long.valueOf(request.getParameter("gsJe"));
+        Long gsylje = Long.valueOf(request.getParameter("gsYlje"));
 
 
-        ExitImpl exitImpl = new ExitImpl();
-        Exit exit = new Exit();
+        GoodsSellImpl goodsSellImpl = new GoodsSellImpl();
+        GoodsSell goodsSell = new GoodsSell();
 
-        exit.setStaffid(staffid);
-        exit.setSnumation(snumation);
-        exit.setCommodityid(commodityid);
-        exit.setWarehouseid(warehouseid);
-        exit.setExitNum(exitnum);
-        exit.setExitDate(exitDate);
+        goodsSell.setGsID(gsid);
+        goodsSell.setCommodityid(commodityid);
+        goodsSell.setMerchandisingid(merchandisingid);
+        goodsSell.setGsNum(gsnum);
+        goodsSell.setGsje(gsje);
+        goodsSell.setGsylje(gsylje);
 
         try{
 
             //向表中插入一条记录
-            exitImpl.add(exit);
+            goodsSellImpl.add(goodsSell);
 
         } catch (Exception e){
             e.printStackTrace();

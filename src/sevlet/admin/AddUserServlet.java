@@ -23,7 +23,7 @@ public class AddUserServlet extends HttpServlet{
         //将输入转换为中文
         request.setCharacterEncoding("GBK");
         //设置输出为中文
-        response.setContentType("text/html;charst=GBK");
+        response.setContentType("text/html;charset=GBK");
         //获取输出流
         PrintWriter out = response.getWriter();
         //获取表单登录名

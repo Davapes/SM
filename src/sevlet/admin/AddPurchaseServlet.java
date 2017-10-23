@@ -1,12 +1,7 @@
 package sevlet.admin;
-
-import or.homework.dao.impl.CommodityImpl;
-import or.homework.dao.impl.ExitImpl;
-import or.homework.dao.impl.LoginImpl;
+import or.homework.dao.impl.*;
 import or.homework.util.ConnectJDBC;
-import or.homework.vo.Commodity;
-import or.homework.vo.Exit;
-import or.homework.vo.Login;
+import or.homework.vo.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,8 +13,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-public class AddExitServlet extends HttpServlet{
+public class AddPurchaseServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
         doPost( request,response);
     }
@@ -33,46 +27,34 @@ public class AddExitServlet extends HttpServlet{
         PrintWriter out = response.getWriter();
 
         /*
-        private Long exitID;
+        private Long pchID;
+        private Long pchMoney;
+        private Date pchDate;
         private Long staffid;
-        private Long snumation;
-        private Long commodityid;
-        private Long warehouseid;
-        private Date exitDate;
-        private Long exitNum;
+        private Long supplierid;
          */
 
-
-
-
-        Long staffid = Long.valueOf(request.getParameter("staffID"));
-        Long snumation = Long.valueOf(request.getParameter("Snumation"));
-        Long commodityid = Long.valueOf(request.getParameter("commodityId"));
-        Long warehouseid = Long.valueOf(request.getParameter("warehouseID"));
-        Long exitnum = Long.valueOf(request.getParameter("exitNum"));
+        Long pchid = Long.valueOf(request.getParameter("pchID"));
+        Long pchmoney = Long.valueOf(request.getParameter("pchMoney"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date exitDate = null;
+        Date pchdate = null;
         try {
-            exitDate = sdf.parse(request.getParameter("exitDate"));
+            pchdate = sdf.parse(request.getParameter("pchDate"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Long staffid = Long.valueOf(request.getParameter("staffID"));
+        Long supplierid = Long.valueOf(request.getParameter("supplierID"));
+
+        PurchaseImopl purchaseImopl = new PurchaseImopl();
+        Purchase purchase = new Purchase();
 
 
-        ExitImpl exitImpl = new ExitImpl();
-        Exit exit = new Exit();
-
-        exit.setStaffid(staffid);
-        exit.setSnumation(snumation);
-        exit.setCommodityid(commodityid);
-        exit.setWarehouseid(warehouseid);
-        exit.setExitNum(exitnum);
-        exit.setExitDate(exitDate);
 
         try{
 
             //向表中插入一条记录
-            exitImpl.add(exit);
+            purchaseImopl.add(purchase);
 
         } catch (Exception e){
             e.printStackTrace();
