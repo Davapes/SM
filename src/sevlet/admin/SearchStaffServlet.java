@@ -41,7 +41,7 @@ public class SearchStaffServlet extends HttpServlet{
         if(staffList != null){
             request.setAttribute("staffList",staffList);
         }
-        request.getRequestDispatcher("stafflist.jsp").forward(request,response);
+        request.getRequestDispatcher("staffList.jsp").forward(request,response);
 
 
 
