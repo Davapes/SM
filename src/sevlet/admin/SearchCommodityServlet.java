@@ -55,7 +55,7 @@ public class SearchCommodityServlet extends HttpServlet {
         }
         if (Commoditylist != null) {
             request.setAttribute("CommodityList", Commoditylist);
-            request.getRequestDispatcher("CommodityManager.jsp").forward(request, response);
+            request.getRequestDispatcher("commodityList.jsp").forward(request, response);
         }
 
     }

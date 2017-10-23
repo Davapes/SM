@@ -39,7 +39,7 @@ public class SearchWarehouseServlet extends HttpServlet{
         if(whList != null){
             request.setAttribute("whList",whList);
         }
-        request.getRequestDispatcher("warehouselist.jsp").forward(request,response);
+        request.getRequestDispatcher("warehouseList.jsp").forward(request,response);
 
 
 

@@ -40,7 +40,7 @@ public class SearchSuperMarketServlet extends HttpServlet {
         if(superMarketsList != null){
             request.setAttribute("superMarketList",superMarketsList);
         }
-        request.getRequestDispatcher("superMarketList.jsp").forward(request,response);
+        request.getRequestDispatcher("supermarketList.jsp").forward(request,response);
 
     }
 }

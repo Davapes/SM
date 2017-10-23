@@ -54,7 +54,7 @@ public class SearchExitServlet extends HttpServlet{
         if(exitList != null){
             request.setAttribute("exitList",exitList);
         }
-        request.getRequestDispatcher("exitlist.jsp").forward(request,response);
+        request.getRequestDispatcher("exitList.jsp").forward(request,response);
 
 
 
