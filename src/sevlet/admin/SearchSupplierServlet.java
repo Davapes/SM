@@ -18,8 +18,8 @@ public class SearchSupplierServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("GBK");
-        response.setContentType("text/html;charset=GBK");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         //获取信息
         Long supID = Long.valueOf(request.getParameter("supID"));
         String supName = request.getParameter("supName");

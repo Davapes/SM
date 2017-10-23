@@ -25,9 +25,9 @@ public class UpdateMerchandisingServlet extends HttpServlet{
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //将输入转换为中文
-        request.setCharacterEncoding("GBK");
+        request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charset=GBK");
+        response.setContentType("text/html;charset=UTF-8");
         //获取输出流
         PrintWriter out = response.getWriter();
 

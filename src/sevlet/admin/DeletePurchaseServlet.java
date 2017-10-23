@@ -18,9 +18,9 @@ public class DeletePurchaseServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //将输入转换为中文
-        request.setCharacterEncoding("GBK");
+        request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charst=GBK");
+        response.setContentType("text/html;charst=UTF-8");
         Long pchid = Long.valueOf(request.getParameter("pchID"));
         PurchaseImopl purchaseImopl = new PurchaseImopl();
         Purchase purchase = new Purchase();

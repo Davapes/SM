@@ -21,8 +21,8 @@ public class SearchGoodSellServlet extends HttpServlet{
     }
 
     protected void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-        request.setCharacterEncoding("GBK");
-        response.setContentType("text/html;charset=GBK");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         //获取信息
         Long goodsellid = Long.valueOf(request.getParameter("goodsellID"));
         //String staffname = request.getParameter("staffName");

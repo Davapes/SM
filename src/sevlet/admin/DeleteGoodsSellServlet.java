@@ -13,9 +13,9 @@ public class DeleteGoodsSellServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
         //将输入转换为中文
-        request.setCharacterEncoding("GBK");
+        request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charst=GBK");
+        response.setContentType("text/html;charst=UTF-8");
         Long gsID = Long.valueOf(request.getParameter("gsid"));
         GoodsSellImpl goodsSellImlp = new GoodsSellImpl();
         GoodsSell goodsSell = new GoodsSell();

@@ -18,8 +18,8 @@ public class SearchProcurementServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("GBK");
-        response.setContentType("text/html;charset=GBK");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
             Long procurementid = Long.valueOf(request.getParameter("procurementid"));
         Long commodityid = Long.valueOf(request.getParameter("commodityid"));
         Long purchaseid = Long.valueOf(request.getParameter("purchaseid"));

@@ -17,8 +17,8 @@ public class SearchWarehouseServlet extends HttpServlet{
     }
 
     protected void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-        request.setCharacterEncoding("GBK");
-        response.setContentType("text/html;charset=GBK");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         //获取信息
         Long whid = Long.valueOf(request.getParameter("staffID"));
         String whname = request.getParameter("staffName");
