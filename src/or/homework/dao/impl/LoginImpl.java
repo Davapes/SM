@@ -4,8 +4,6 @@ import or.homework.dao.ILoginDao;
 import or.homework.util.ConnectJDBC;
 import or.homework.vo.Login;
 import or.homework.vo.Staff;
-import sun.rmi.runtime.Log;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
