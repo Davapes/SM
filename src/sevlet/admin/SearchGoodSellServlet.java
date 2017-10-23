@@ -25,25 +25,26 @@ public class SearchGoodSellServlet extends HttpServlet{
         response.setContentType("text/html;charset=GBK");
         //获取信息
         Long goodsellid = Long.valueOf(request.getParameter("goodsellID"));
-        String staffname = request.getParameter("staffName");
+        //String staffname = request.getParameter("staffName");
+        Long merchandisingid = Long.valueOf(request.getParameter("merchandisingID"));
 
         //ConnectJDBC db = new ConnectJDBC();
         GoodsSellImpl goodsSellImlp = new GoodsSellImpl();
-        GoodsSell goodsSell = new
-        List<Exit> exitList = null;
+        GoodsSell goodsSell = new GoodsSell();
+        List<GoodsSell> goodsSellsList = null;
 
-        exit.(staffid);
-        staff.setsName(staffname);
+        goodsSell.setGsID(goodsellid);
+        goodsSell.setMerchandisingid(merchandisingid);
         try {
-            staffList = stfImlp.select(staff);
+            goodsSellsList = goodsSellImlp.select(goodsSell);
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        if(staffList != null){
-            request.setAttribute("staffList",staffList);
+        if(goodsSellsList != null){
+            request.setAttribute("goodsSellsList",goodsSellsList);
         }
-        request.getRequestDispatcher("stafflist.jsp").forward(request,response);
+        request.getRequestDispatcher("goodsSellsList.jsp").forward(request,response);
 
 
 
