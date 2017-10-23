@@ -101,10 +101,10 @@ public class SupplierImpl implements ISupplierDao {
         if(supplier.getSupID()!=null){
             sql+=" and supID = "+"'"+supplier.getSupID()+"'";
         }
-        if(supplier.getSupName()!=null){
+        if(supplier.getSupName()!=null&&supplier.getSupName()!=""){
             sql+=" and supName = "+"'"+supplier.getSupName()+"'";
         }
-        if(supplier.getSupAdds()!=null){
+        if(supplier.getSupAdds()!=null&&supplier.getSupAdds()!=""){
             sql+=" and supAdds = "+"'"+supplier.getSupAdds()+"'";
         }
         if(supplier.getSupPhone()!=null){
@@ -113,7 +113,7 @@ public class SupplierImpl implements ISupplierDao {
         if(supplier.getSupAccount()!=null){
             sql+=" and supAccount = "+"'"+supplier.getSupAccount()+"'";
         }
-        if(supplier.getSupBank()!=null){
+        if(supplier.getSupBank()!=null&&supplier.getSupBank()!=""){
             sql+=" and supBank = "+"'"+supplier.getSupBank()+"'";
         }
         Connection conn = ConnectJDBC.getConn();

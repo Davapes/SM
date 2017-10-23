@@ -24,7 +24,7 @@ public class SearchMerchandisingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        Long MERCHANDISINGID = Long.valueOf(request.getParameter("Merchandising ID"));
+        Long mID = Long.valueOf(request.getParameter("Merchandising ID"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
         try {
@@ -36,7 +36,7 @@ public class SearchMerchandisingServlet extends HttpServlet {
         MerchandisingImpl mcdsImpl=new MerchandisingImpl();
         Merchandising merchandising=new Merchandising();
         List<Merchandising>MerchandisingList=null;
-        merchandising.setmID(MERCHANDISINGID);
+        merchandising.setmID(mID);
         merchandising.setmDate(date);
         try{
             MerchandisingList=mcdsImpl.select(merchandising);

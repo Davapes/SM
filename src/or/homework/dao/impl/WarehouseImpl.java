@@ -104,10 +104,10 @@ public class WarehouseImpl implements IWarehouseDao {
         if (warehouse.getsID() != null) {
             sql+=" and sID = "+"'"+warehouse.getsID()+"'";
         }
-        if (warehouse.getWhName() != null) {
+        if (warehouse.getWhName() != null&&warehouse.getWhName()!="") {
             sql+=" and whName = "+"'"+warehouse.getWhName()+"'";
         }
-        if (warehouse.getWhAddress() != null) {
+        if (warehouse.getWhAddress() != null&&warehouse.getWhAddress()!="") {
             sql+=" and whAddress = "+"'"+warehouse.getWhAddress()+"'";
         }
         if (warehouse.getCapacity() != null) {

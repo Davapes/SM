@@ -44,7 +44,7 @@ public class AddCommodityServlet extends HttpServlet{
          */
 
 
-
+        Long commodityid=Long.valueOf(request.getParameter("commodityID"));
         String commodityname = request.getParameter("commodityName");
         String origin = request.getParameter("Origin");
         String brand = request.getParameter("Brand");
@@ -65,6 +65,7 @@ public class AddCommodityServlet extends HttpServlet{
         CommodityImpl commodityImpl = new CommodityImpl();
         Commodity commodity = new Commodity();
 
+        commodity.setcID(commodityid);
         commodity.setcName(commodityname);
         commodity.setOrigin(origin);
         commodity.setBrand(brand);

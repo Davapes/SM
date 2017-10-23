@@ -106,16 +106,16 @@ public class CommodityImpl implements ICommodityDao {
         if(commodity.getcID()!=null){
             sql+=" and cID = "+"'"+commodity.getcID()+"'";
         }
-        if(commodity.getcName()!=null){
+        if(commodity.getcName()!=null&&commodity.getcName()!=""){
             sql+=" and cName = "+"'"+commodity.getcName()+"'";
         }
-        if(commodity.getUnits()!=null){
+        if((commodity.getUnits() != null) && (commodity.getUnits()!="")){
             sql+=" and units = "+"'"+commodity.getUnits()+"'";
         }
-        if(commodity.getOrigin()!=null){
+        if(commodity.getOrigin()!=null&&commodity.getOrigin()!=""){
             sql+=" and origin = "+"'"+commodity.getOrigin()+"'";
         }
-        if(commodity.getBrand()!=null){
+        if(commodity.getBrand()!=null&&commodity.getBrand()!=""){
             sql+=" and brand = "+"'"+commodity.getBrand()+"'";
         }
         if(commodity.getCprice()!=null){
@@ -130,7 +130,7 @@ public class CommodityImpl implements ICommodityDao {
         if(commodity.getSupplierid()!=null){
             sql+=" and supplier = "+"'"+commodity.getSupplierid()+"'";
         }
-        if(commodity.getBaozhiqi()!=null){
+        if(commodity.getBaozhiqi()!=null&&commodity.getBaozhiqi()!=""){
             sql+=" and baozhiqi = "+"'"+commodity.getBaozhiqi()+"'";
         }
         if(commodity.getWarehouseid()!=null){

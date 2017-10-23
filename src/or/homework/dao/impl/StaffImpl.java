@@ -106,10 +106,10 @@ public class StaffImpl implements IStaffDao {
         if(staff.gettID()!=null){
             sql+=" and tID = "+"'"+staff.gettID()+"'";
         }
-        if(staff.getsName()!=null){
+        if(staff.getsName()!=null&&staff.getsName()!=""){
             sql+=" and sName = "+"'"+staff.getsName()+"'";
         }
-        if(staff.getsSex()!=null){
+        if(staff.getsSex()!=null&&staff.getsSex()!=""){
             sql+=" and sSex = "+"'"+staff.getsSex()+"'";
         }
         if(staff.getsPhone()!=null){
@@ -121,10 +121,10 @@ public class StaffImpl implements IStaffDao {
         if(staff.getsDate()!=null){
             sql+=" and sDate = "+"'"+staff.getsDate()+"'";
         }
-        if(staff.getsAdds()!=null){
+        if(staff.getsAdds()!=null&&staff.getsAdds()!=""){
             sql+=" and sAdds = "+"'"+staff.getsAdds()+"'";
         }
-        if(staff.getsProfessional()!=null){
+        if(staff.getsProfessional()!=null&&staff.getsProfessional()!=""){
             sql+=" and sProfessional = "+"'"+staff.getsProfessional()+"'";
         }
         Connection conn = ConnectJDBC.getConn();

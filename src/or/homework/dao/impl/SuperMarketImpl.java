@@ -96,13 +96,13 @@ public class SuperMarketImpl implements ISuperMarketDao {
         if(superMarket.getSmID()!=null){
             sql+=" and smID = "+"'"+superMarket.getSmID()+"'";
         }
-        if(superMarket.getSmName()!=null){
+        if(superMarket.getSmName()!=null&&superMarket.getSmName()!=""){
             sql+=" and smName = "+"'"+superMarket.getSmName()+"'";
         }
-        if(superMarket.getManger()!=null){
+        if(superMarket.getManger()!=null&&superMarket.getManger()!=""){
             sql+=" and manger = "+"'"+superMarket.getManger()+"'";
         }
-        if(superMarket.getSmAdds()!=null){
+        if(superMarket.getSmAdds()!=null&&superMarket.getSmAdds()!=""){
             sql+=" and smAdds = "+"'"+superMarket.getSmAdds()+"'";
         }
         Connection conn = ConnectJDBC.getConn();

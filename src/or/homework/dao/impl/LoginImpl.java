@@ -92,11 +92,11 @@ public class LoginImpl implements ILoginDao{
     public List<Login> select(Login login) {
         String sql="SELECT * FROM Login WHERE 1=1 ";
         List<Login>result=new ArrayList<Login>();
-        if(login.getUsername()!=null){
+        if(login.getUsername()!=null&&login.getUsername()!=""){
             sql+=" and username = "+"'"+login.getUsername()+"'";
 
         }
-        if(login.getPassword()!=null){
+        if(login.getPassword()!=null&&login.getPassword()!=""){
             sql+=" and password = "+"'"+login.getPassword()+"'";
         }
         if(login.getStaffid()!=null){
