@@ -41,7 +41,7 @@ public class StaffImpl implements IStaffDao {
     }
 
     @Override
-    public void delete(Staff staff) {
+    public static void delete(Staff staff) {
         String sql = "DELETE FROM Staff WHERE sID=?";
         Connection conn = ConnectJDBC.getConn();
         PreparedStatement pst = null;
