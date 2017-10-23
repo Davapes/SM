@@ -8,6 +8,10 @@
         <servlet-name>SearchStaffServlet</servlet-name>
         <servlet-class>sevlet.admin.SearchStaffServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>sevlet.admin.DeleteGoodsSellServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchStaffServlet</servlet-name>
         <url-pattern>/SearchStaffServlet</url-pattern>

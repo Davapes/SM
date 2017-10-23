@@ -1,0 +1,67 @@
+package sevlet.admin;
+
+import or.homework.dao.impl.LoginImpl;
+import or.homework.util.ConnectJDBC;
+import or.homework.vo.Login;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet(name = "Servlet13")
+public class UpdateUserServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost( request,response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//将输入转换为中文
+        request.setCharacterEncoding("GBK");
+        //设置输出为中文
+        response.setContentType("text/html;charset=GBK");
+        //获取输出流
+        PrintWriter out = response.getWriter();
+        //获取表单登录名
+        String username = request.getParameter("userName");
+        //获取表单用户密码
+        String userpass = request.getParameter("userPass");
+        //获取权限
+        String role = request.getParameter("role");
+        //获取当前注册时间
+        /*
+        Date curTime = new Date();
+        //格式化当前日期
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String regtime = dateFormat.format(curTime);
+        ServletContext ctx = this.getServletContext();
+        //通过servletcontext 获得web.xml中设置的初始化参数
+        /*
+        String server = ctx.getInitParameter("server"); //获取服务器地址
+        String dbname = ctx.getInitParameter("dbname"); //获取数据库名
+        String dbuser = ctx.getInitParameter("user");     //获取数据库用户名
+        String pwd = ctx.getInitParameter("pwd");       //获取数据库密码
+        */
+        ConnectJDBC db = new ConnectJDBC();
+        LoginImpl usr = new LoginImpl();
+        Login login = new Login();
+        try{
+            //连接数据库
+            db.getConn();
+            //向user表中更新一条记录
+            login.setUsername(username);
+            login.setPassword(userpass);
+            //login.setStaffid(role);
+            usr.update(login);
+        }//catch (ClassNotFoundException e){
+        // e.printStackTrace();
+        // }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+}
