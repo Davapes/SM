@@ -177,7 +177,7 @@
                             <input type="checkbox" name="checkAll" onclick="onclick=ckbSelect(this.checkbox,'userid')">
                         </th>
                         <th width="5%">
-                            <span style="font-weight: 400">出库批次</span>
+                            <span style="font-weight: 400">出库编号</span>
                         </th>
                         <th width="7%">
                             <span style="font-weight: 400">员工编号</span>
@@ -217,8 +217,8 @@
                         <td align="center"><%=exit.getStaffid()%></td>
                         <%--<td align="center"><%=exit.getNum() %></td>--%>
                         <%--<td align="center"><%=exit.getWhnum() %></td>--%>
-                        <td align="center"><%=exit.getNumber() %></td>
-                        <td align="center"><%=exit.getWhnum() %></td>
+                        <td align="center"><%=exit.getSnumation() %></td>
+                        <td align="center"><%=exit.getWarehouseid() %></td>
                         <td align="center"><%=exit.getExitDate() %></td>
                         <td align="center"><%=exit.getExitNum() %></td>
                     </tr>

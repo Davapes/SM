@@ -1,0 +1,136 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: LicolnLee
+  Date: 10/24/2017
+  Time: 4:07 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="en">
+<head> <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script language="JavaScript">
+        function sub() {
+            var commodityid =document.getElementById("commodityid").value;
+            var purchaseid =document.getElementById("purchaseid").value;
+            var pnum =document.getElementById("pnum").value;
+            var pje =document.getElementById("pje").value;
+            var username=document.getElementById("username").value;
+            var userpass = document.getElementById("userPass").value;
+            var repass = document.getElementById("rePass").value;
+            if (commodityid==null|| commodityid==""){
+                alert("请填写商品ID");
+                document.getElementById("commodityid").focus();
+            }else if (purchaseid==null || purchaseid==""){
+                alert("请填写采购编号");
+                document.getElementById("purchaseid").focus();
+            }
+            else if (pnum==null || pnum==""){
+                alert("请填写采购数量");
+                document.getElementById("pnum").focus();
+            }
+            else if(pje==null || pje==""){
+                alert("请填写采购金额");
+                document.getElementById("pje").focus();
+            }
+            else if(username==null || username==""){
+                alert("请填写商品提交用户名");
+                document.getElementById("userName").focus();
+            }
+            else if(userpass==null || userpass==""){
+                alert("请填写商品提交登陆密码");
+                document.getElementById("userpass").focus();
+            }
+            else if(repass==null || repass==""){
+                alert("请确认密码");
+                document.getElementById("repass").focus();
+            }
+            else if(userpass!=repass){
+                alert("确认密码不相符!");
+                document.getElementById("repass").value=null;
+                document.getElementById("repass").focus();
+            }
+            else{
+                document.regist.submit;
+            }
+        }
+        function res() {
+            document.getElementsByName("commodityid").value=null;
+            document.getElementsByName("purchaseid").value=null;
+            document.getElementsByName("pnum").value=null;
+            document.getElementsByName("pje").value=null;
+            document.getElementsByName("userName").value=null;
+            document.getElementsByName("userPass").value=null;
+            document.getElementsByName("rePass").value=null;
+        }
+
+    </script>
+    <script type="text/javascript" src="js/year_month_day.js"></script>
+    <title>AddProcurement</title>
+</head>
+<body class="login">
+<form action="AddProcurementServlet" method="post" name="regist"></form>
+<div class="operation_page">
+    <table class="Add">
+        <tbody>
+        <tr>
+            <td class="Add_title">
+                <div>新增采购信息</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="Add_content">
+                    <tbody>
+                    <tr>
+                        <td class="Add_font">商品ID：</td>
+                        <td>
+                            <input type="text" name="commodityid" id="commodityid" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Add_font">采购编号：</td>
+                        <td>
+                            <input type="text" name="purchaseid" id="purchaseid" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Add_font">采购数量：</td>
+                        <td>
+                            <input type="text" name="pnum" id="pnum" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Add_font">采购金额：</td>
+                        <td>
+                            <input type="text" name="pje" id="pje" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Add_font">用户提交密码：</td>
+                        <td>
+                            <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Add_font">确认密码：</td>
+                        <td>
+                            <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="res()">重置</button>
+                            <button onclick="sub()">提交</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
