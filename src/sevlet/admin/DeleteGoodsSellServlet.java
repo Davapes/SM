@@ -15,7 +15,7 @@ public class DeleteGoodsSellServlet extends javax.servlet.http.HttpServlet {
         //将输入转换为中文
         request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charst=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         Long gsID = Long.valueOf(request.getParameter("gsid"));
         GoodsSellImpl goodsSellImlp = new GoodsSellImpl();
         GoodsSell goodsSell = new GoodsSell();

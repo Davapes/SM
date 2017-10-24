@@ -20,7 +20,7 @@ public class DeleteWarehouseServlet extends HttpServlet {
 //将输入转换为中文
         request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charst=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         Long whID = Long.valueOf(request.getParameter("whid"));
         WarehouseImpl commodityImpl = new WarehouseImpl();
         Warehouse warehouse = new Warehouse();

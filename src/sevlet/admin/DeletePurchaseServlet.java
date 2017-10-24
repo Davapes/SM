@@ -20,7 +20,7 @@ public class DeletePurchaseServlet extends HttpServlet {
 //将输入转换为中文
         request.setCharacterEncoding("UTF-8");
         //设置输出为中文
-        response.setContentType("text/html;charst=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         Long pchid = Long.valueOf(request.getParameter("pchID"));
         PurchaseImopl purchaseImopl = new PurchaseImopl();
         Purchase purchase = new Purchase();
