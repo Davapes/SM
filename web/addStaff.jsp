@@ -20,7 +20,7 @@
             var year = document.getElementById("selYear").value;
             var month = document.getElementById("selMonth").value;
             var day = document.getElementById("selDay").value;
-            var userame = document.getElementById("userName").value;
+            var username = document.getElementById("userName").value;
             var userpass = document.getElementById("userPass").value;
             var repass = document.getElementById("rePass").value;
             if (name==null|| name==""){
@@ -48,147 +48,150 @@
             }
             else if(userpass==null || userpass==""){
                 alert("请填写员工登陆密码");
-                document.getElementById("userpass").focus();
+                document.getElementById("userPass").focus();
             }
             else if(repass==null || repass==""){
                 alert("请确认密码");
-                document.getElementById("repass").focus();
+                document.getElementById("rePass").focus();
             }
             else if(userpass!=repass){
                 alert("确认密码不相符!");
-                document.getElementById("repass").value=null;
-                document.getElementById("repass").focus();
+                document.getElementById("rePass").value=null;
+                document.getElementById("rePass").focus();
             }
             else{
                 document.regist.submit;
             }
         }
         function res() {
-            document.getElementsByName("name").value=null;
-            document.getElementsByName("sex").value=null;
-            document.getElementsByName("userPhone").value=null;
-            document.getElementsByName("userSalary").value=null;
-            document.getElementsByName("userAddress").value=null;
-            document.getElementsByName("userJob").value=null;
-            document.getElementsByName("userName").value=null;
-            document.getElementsByName("userPass").value=null;
-            document.getElementsByName("rePass").value=null;
+            document.getElementById("name").value=null;
+            document.getElementById("sex").value=null;
+            document.getElementById("userPhone").value=null;
+            document.getElementById("userSalary").value=null;
+            document.getElementById("userAddress").value=null;
+            document.getElementById("userJob").value=null;
+            document.getElementById("userName").value=null;
+            document.getElementById("userPass").value=null;
+            document.getElementById("rePass").value=null;
+        }
+        function ret() {
+            window.location="index.jsp";
         }
 
     </script>
     <script type="text/javascript" src="js/year_month_day.js"></script>
-    <title>AddUser</title>
+    <title>AddStaff</title>
 </head>
 <body class="login">
-<form action="AddStaffServlet" method="post" name="regist"></form>
-<div class="operation_page">
-    <table class="Add">
-        <tbody>
-        <tr>
-            <td class="Add_title">
-                <div>新增用户信息</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <table class="Add_content">
-                    <tbody>
-                    <tr>
-                        <td class="Add_font">员工姓名：</td>
-                        <td>
-                            <input type="text" name="name" id="name"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">员工性别：</td>
-                        <td>
-                            <input type="radio" name="sex" id="sex" value="1" checked="true">男
-                            <input type="radio" name="sex1" value="0" >女
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">电话号码：</td>
-                        <td>
-                            <input type="text" name="userPhone" id="userPhone"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">月薪：</td>
-                        <td>
-                            <input type="text" name="userSalary" id="userSalary"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">聘入日期：</td>
-                        <td>
-                            <select id="selYear" name="selYear"></select>
-                            <select id="selMonth" name="selMonth"></select>
-                            <select id="selDay" name="selDay"></select>
-                            <script type="text/javascript">
-                                var selYear = window.document.getElementById("selYear");
-                                var selMonth = window.document.getElementById("selMonth");
-                                var selDay = window.document.getElementById("selDay");
-                                new DateSelector(selYear, selMonth, selDay, 2017, 10, 25);
-                                var dt = new Date(2017, 10, 25);
-                                new DateSelector(selYear, selMonth ,selDay, dt);
-                            </script>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">员工住址：</td>
-                        <td>
-                            <input type="text" name="userAddress"  id="userAddress"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">员工职位：</td>
-                        <td>
-                            <select name="userJob"  id="userJob" class="Add_input">
-                                <option value=""></option>
-                                <option value="经理">经理</option>
-                                <option value="财务管理员">财务管理员</option>
-                                <option value="销售管理员">销售管理员</option>
-                                <option value="采购管理员">采购管理员</option>
-                                <option value="仓库管理员">仓库管理员</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font" colspan="2" text align="center">&nbsp;&nbsp;&nbsp;请为该员工设置其登陆账户和密码：</td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">用户名：</td>
-                        <td>
-                            <input type="text" name="userName" id="userName"  size="30" class="Add_input">
-                        </td>
-                    </tr>
+<form action="AddStaffServlet" method="post" name="regist">
+    <div class="operation_page">
+        <table class="Add">
+            <tbody>
+            <tr>
+                <td class="Add_title">
+                    <div>新增用户信息</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="Add_content">
+                        <tbody>
+                        <tr>
+                            <td class="Add_font">员工姓名：</td>
+                            <td>
+                                <input type="text" name="name" id="name" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工性别：</td>
+                            <td>
+                                <input type="radio" name="sex" id="sex" value="1" checked="true">男
+                                <input type="radio" name="sex1" value="0" >女
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">电话号码：</td>
+                            <td>
+                                <input type="text" name="userPhone" id="userPhone" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">月薪：</td>
+                            <td>
+                                <input type="text" name="userSalary" id="userSalary" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">聘入日期：</td>
+                            <td>
+                                <select id="selYear" name="selYear"></select>
+                                <select id="selMonth" name="selMonth"></select>
+                                <select id="selDay" name="selDay"></select>
+                                <script type="text/javascript">
+                                    var selYear = window.document.getElementById("selYear");
+                                    var selMonth = window.document.getElementById("selMonth");
+                                    var selDay = window.document.getElementById("selDay");
+                                    new DateSelector(selYear, selMonth, selDay, 2017, 10, 25);
+                                    var dt = new Date(2017, 10, 25);
+                                    new DateSelector(selYear, selMonth ,selDay, dt);
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工住址：</td>
+                            <td>
+                                <input type="text" name="userAddress"  id="userAddress" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工职位：</td>
+                            <td>
+                                <select name="userJob"  id="userJob" class="Add_input">
+                                    <option value=""></option>
+                                    <option value="经理">经理</option>
+                                    <option value="财务管理员">财务管理员</option>
+                                    <option value="销售管理员">销售管理员</option>
+                                    <option value="采购管理员">采购管理员</option>
+                                    <option value="仓库管理员">仓库管理员</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font" colspan="2" text align="center">&nbsp;&nbsp;&nbsp;请为该员工设置其登陆账户和密码：</td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">用户名：</td>
+                            <td>
+                                <input type="text" name="userName" id="userName" value size="30" class="Add_input">
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="Add_font">用户密码：</td>
-                        <td>
-                            <input type="password" name="userPass" id="userPass"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Add_font">确认密码：</td>
-                        <td>
-                            <input type="password" name="rePass" id="rePass"  size="30" class="Add_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button onclick="res()">重置</button>
-                            <button onclick="sub()">提交</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-
+                        <tr>
+                            <td class="Add_font">用户密码：</td>
+                            <td>
+                                <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">确认密码：</td>
+                            <td>
+                                <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="res()">重置</button>&nbsp;&nbsp;
+                                <button onclick="sub()">提交</button>&nbsp;&nbsp;
+                                <button onclick="ret()">返回</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
 </body>
 </html>

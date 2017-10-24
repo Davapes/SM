@@ -6,6 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="or.homework.vo.GoodsSell" %>
+<%@ page import="or.homework.dao.impl.GoodsSellImpl" %>
+<%@ page import="or.homework.vo.Login" %>
+<%@ page import="java.util.List" %>
+<%@ page import="or.homework.dao.impl.LoginImpl" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <html>
 <head>
     <title>修改销售表单信息</title>
@@ -71,14 +78,22 @@
             document.getElementsByName("rePass").value=null;
         }
         function ret() {
-            window.location.back(-1);
+            window.location="goodsSellList.jsp";
         }
 
     </script>
     <script type="text/javascript" src="js/year_month_day.js"></script>
+    <script type="text/javascript">
+        var selYear = window.document.getElementById("selYear");
+        var selMonth = window.document.getElementById("selMonth");
+        var selDay = window.document.getElementById("selDay");
+        new DateSelector(selYear, selMonth, selDay, 2017, 10, 25);
+        var dt = new Date(2017, 10, 25);
+        new DateSelector(selYear, selMonth ,selDay, dt);
+    </script>
 </head>
 <body class="login">
-<form action="" method="" name="regist">
+<form action="UpdateGoodsSellServlet" method="POST" name="regist">
 <div class="operation_page">
     <table class="Add">
         <tbody>

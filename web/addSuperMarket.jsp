@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-<head> <link href="css/main.css" rel="stylesheet" type="text/css">
+<head>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
     <script language="JavaScript">
         function sub() {
             var name =document.getElementById("name").value;
@@ -56,6 +57,8 @@
             document.getElementsByName("userPass").value=null;
             document.getElementsByName("rePass").value=null;
         }
+        function ret() {
+            window.location="index.jsp";
 
     </script>
     <script type="text/javascript" src="js/year_month_day.js"></script>
@@ -114,8 +117,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <button onclick="res()">重置</button>
-                            <button onclick="sub()">提交</button>
+                            <button onclick="res()">重置</button>&nbsp;&nbsp;
+                            <button onclick="sub()">提交</button>&nbsp;&nbsp;
+                            <button onclick="ret()">返回</button>
                         </td>
                     </tr>
                     </tbody>
@@ -126,6 +130,6 @@
     </table>
 </div>
 
-
+</form>
 </body>
 </html>

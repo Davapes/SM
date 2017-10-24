@@ -4,7 +4,13 @@
   Date: 10/24/2017
   Time: 4:07 PM
   To change this template use File | Settings | File Templates.
---%>
+--%><%@ page import="or.homework.vo.Procurement" %>
+<%@ page import="or.homework.dao.impl.ProcurementImpl" %>
+<%@ page import="or.homework.vo.Login" %>
+<%@ page import="java.util.List" %>
+<%@ page import="or.homework.dao.impl.LoginImpl" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -65,14 +71,22 @@
             document.getElementsByName("rePass").value=null;
         }
         function ret() {
-            window.location.back(-1);
+            window.location="ProcurementList.jsp";
         }
 
     </script>
     <script type="text/javascript" src="js/year_month_day.js"></script>
+    <script type="text/javascript">
+        var selYear = window.document.getElementById("selYear");
+        var selMonth = window.document.getElementById("selMonth");
+        var selDay = window.document.getElementById("selDay");
+        new DateSelector(selYear, selMonth, selDay, 2017, 10, 25);
+        var dt = new Date(2017, 10, 25);
+        new DateSelector(selYear, selMonth ,selDay, dt);
+    </script>
 </head>
 <body class="login">
-<form action="" method="" name="regist">
+<form action="UpdateProcurementServlet" method="POST" name="regist">
 <div class="operation_page">
     <table class="Add">
         <tbody>

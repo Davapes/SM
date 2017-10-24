@@ -1,181 +1,247 @@
-<%--
+<%@ page import="or.homework.vo.Staff" %>
+<%@ page import="or.homework.dao.impl.StaffImpl" %>
+<%@ page import="or.homework.vo.Login" %>
+<%@ page import="java.util.List" %>
+<%@ page import="or.homework.dao.impl.LoginImpl" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
-  User: mice
-  Date: 2017/10/23
-  Time: 下午5:19
+  User: Mr.Joker
+  Date: 2017/10/24
+  Time: 18:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="or.homework.dao.impl.StaffImpl" %>
-<%@page import="java.util.List" %>
-<%@ taglib prefix="c" %>
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="css路径">
-            <script type="text/javascript" src="js路径"></script>
-            <script type="text/javascript" src="js路径"></script>
-            <script type="text/javascript" src="js路径"></script>
-            <script language="JavaScript">
-                function changPic(obj) {
-                    var filename = obj.value;
-                    var filetype = filename.split(".");
-                    var filenumber = filetype.length-1;
-                    if(filetype[filenumber].toUpperCase()!="JGP" && filetype[filenumber].toUpperCase()!="GIF"){
-                        alert("请上传jpg或gif格式的图片");
-                        obj.focus();
-                        return false;
-                    }else{
-                        document.getElementsById("showPic").src=filename;
-                    }
-                }
-                function ret() {
-                    window.parent.frmMain.location="staffList.jsp";
-                }
-                function sub() {
-                    doucument.form1.submit();
-                }
-                function fun_check_form() {
+    <title>修改用户信息</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
 
-                }
-                function ckeckIsfloat() {
-                    var nc=event.keyCode;
-                    if(nc<48||nc>57){
-                        if(nc==46){
-                            var s = document.form1.price.value;
-                            for (var i = 0;i<s.length;i++){
-                                if(s.charAt(i)=='.'){
-                                    event.keyCode=0;
-                                    return;
-                                }
-                            }
-                        }else{
-                            event.keyCode=0;
-                            return;
-                        }
-                    }
-                }
-                function res() {
-                    document.getElementsById("表的各个属性").value="";
-                    //
-                    //
-                    //
-                    document.getElementsById("delfile").innerHTML="<input name=pic type=file size=18 onChange='changePic(this)'>";
-                    document.getElementsById("showPic").src="../路径";
-                    document.getElementsById("desription").value="";
-
-                }
-            </script>
-    <title>Title</title>
-    <link herf="../css/mp.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<%
-
-        String QS=request.getParameter("QS");
-        ServletContext ctx=this.getServletContext();
-        String server=ctx.getInitParameter("server");
-        String dbname=ctx.getInitParameter("dbname");
-        String user=ctx.getInitParameter("user");
-        String pwd=ctx.getInitParameter("pwd");
-        GoodsDao dao=new GoodsDao();
-        try{
-                dao.getConn(server,dbname,user,pwd);
-                Goods goods=dao.getGoodsByQS(QS);
-                if(Goods!=null){
-                        pageContext.setAttribute("Goods",goods);
-                }
-        }catch(ClassNotFoundException e){
-        e.printStackTrace();
-        }catch(Exception e){
-        e.printStackTrace();
+    <script language="JavaScript">
+        function sub() {
+            var name =document.getElementById("name").value;
+            var sex =document.getElementById("sex").value;
+            var phone =document.getElementById("userPhone").value;
+            var salary =document.getElementById("userSalary").value;
+            var address =document.getElementById("userAddress").value;
+            var job =document.getElementById("userJob").value;
+            var year = document.getElementById("selYear").value;
+            var month = document.getElementById("selMonth").value;
+            var day = document.getElementById("selDay").value;
+            var username = document.getElementById("userName").value;
+            var userpass = document.getElementById("userPass").value;
+            var repass = document.getElementById("rePass").value;
+            if (name==null|| name==""){
+                alert("请填写员工姓名");
+                document.getElementById("name").focus();
+            }else if (phone==null || phone==""){
+                alert("请填写员工联系方式");
+                document.getElementById("userPhone").focus();
+            }
+            else if (salary==null || salary==""){
+                alert("请填写员工工资");
+                document.getElementById("userSalary").focus();
+            }
+            else if(address==null || address==""){
+                alert("请填写员工地址");
+                document.getElementById("userAddress").focus();
+            }
+            else if(job==null || job==""){
+                alert("请选择员工职称");
+                document.getElementById("userJob").focus();
+            }
+            else if(username==null || username==""){
+                alert("请填写员工用户名");
+                document.getElementById("userName").focus();
+            }
+            else if(userpass==null || userpass==""){
+                alert("请填写员工登陆密码");
+                document.getElementById("userPass").focus();
+            }
+            else if(repass==null || repass==""){
+                alert("请确认密码");
+                document.getElementById("rePass").focus();
+            }
+            else if(userpass!=repass){
+                alert("确认密码不相符!");
+                document.getElementById("rePass").value=null;
+                document.getElementById("rePass").focus();
+            }
+            else{
+                document.regist.submit;
+            }
         }
+        function res() {
+            document.getElementById("name").value=null;
+            document.getElementById("sex").value=null;
+            document.getElementById("userPhone").value=null;
+            document.getElementById("userSalary").value=null;
+            document.getElementById("userAddress").value=null;
+            document.getElementById("userJob").value=null;
+            document.getElementById("userName").value=null;
+            document.getElementById("userPass").value=null;
+            document.getElementById("rePass").value=null;
+        }
+        function ret() {
+            window.location="staffList.jsp";
+        }
+    </script>
+    <script type="text/javascript" src="js/year_month_day.js"></script>
+    <script type="text/javascript">
+        var selYear = window.document.getElementById("selYear");
+        var selMonth = window.document.getElementById("selMonth");
+        var selDay = window.document.getElementById("selDay");
+        new DateSelector(selYear, selMonth, selDay, 2017, 10, 25);
+        var dt = new Date(2017, 10, 25);
+        new DateSelector(selYear, selMonth ,selDay, dt);
+    </script>
+</head>
+<body class="login">
+<%
+    Long sid=Long.valueOf(request.getParameter("sid"));
+    Staff staff=new Staff();
+    staff.setsID(sid);
+    String sex;
+    int a=0,b=0;
+    StaffImpl staffImpl=new StaffImpl();
+    Login login =new Login();
+    login.setStaffid(sid);
+    LoginImpl loginImpl=new LoginImpl();
+    try{
+        List<Staff> lists=staffImpl.select(staff);
+        List<Login> lists2=loginImpl.select(login);
+        if(lists!=null){
+            staff=lists.get(0);
+            sex=staff.getsSex();
+            if(sex=="男"){
+                a=1;
+                b=0;
+            }else {
+                a=0;
+                b=1;
+            }
+            login=lists2.get(0);
+            pageContext.setAttribute("staff",staff);
+            pageContext.setAttribute("login",login);
+        }
+    }catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
-<form method="POST" name="forml" action="EditGoodsServlet">
-<table style="height:100%;width:100%">
-        <tr align="center" valign="middle">
-<td>
-    <TABLE style="height:200;width:492" cellSpacing=0
-        cellPadding=0   border=0 align="center">
-    <TBODY>
-    <TR valign="middle">
-        <td class="title_td" height=12 colspan="3">
-                修改商品信息</td>
-            </TR>
-        <TR>
-            <TD width="203"><img height=260 alt=""
-            src="../image/Goodscovers/${Goods.pic}"
-                width=202   style="cursor.pointer" id="showPic"></TD>
-                <TD   style="background.image:
-                      url(./images/login_Page/loginPage_03.jpg)"
-                      height=120 width=497>
-        <table style="width:100%">
-                <tr>
-                <td class="item_td" width="26%">商品名称:</td>
-                <td class="input_td">
-                        <input type="text" name="GoodsName"
-                        value="${Goods.GoodsName}" style="width:100%"
-                        class="input_input"     size="30"></td>
-                    </tr>
-                    <tr>
-                        <td class="item_td" width="26%">QS:</td>
-                        <td class="input_td"><select name="supplier"
-                                style="width:100%" class="input_drop">
-                        <option value="${Goods.supplierID}"><c:choose>
-                                <c:when test="${Goods.supplierID==1}">
-                                        雀巢
-                                </c:when>
-                                <c:when test="${Goods.supplierID==2}">
-                                        可口可乐
-                                </c:when>
-                                <c:when test="${Goods.supplierID==3}">
-                                        徐福记
-                                </c:when>
-                                </c:choose></option>
-                            <option value="1"> 雀巢 </option>
-                            <option value="2"> 可口可乐 </option>
-                            <option value="3"> 徐福记 </option>
-                        </select></td>
-                        </tr>
-                        <tr>
-                            <td class="item_td" width="26%">价格:</td>
-                            <td class="input_td">
-                                    <input type="text" name="count"
-                                    value="${Goods.count}"style="width=70%"
-                                    class="input_input" size="30">(件/套)</td>
-                        </tr>
-                        <tr>
-                            <td class="item_td" width="26%">商品封面:</td>
-                            <td class="input_td" id="delFile">
-                                    <input name="pic" value="${Goods.pic}"
-                                    type="file" size="18"
-                                    onChange="changPic(this)"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="items_td" width="26%" rowspan="3">
-                                    商品简介:</td>
-                            <td class="input_td" rowspan="3">
-                                    <textarea       name="description" rows="12"
-                                    style="width="100%" class="input_input">
-                                    ${Goods.description }</textarea></td>
-                        </tr>
-                        </table></TD>
-                        </TR>
-                        </tr>
-                            <td colspan="2" align="center">
-                            <button onClick="ret()" style="width="20%">返回
-                            </button>&nbsp;
-                            <button onClick="res()" style="width="20%">重置
-                            </button>&nbsp;
-                            <button onClick="sub()" style="width="20%">提交
-                            </button>
-                            </td>
-                        </tr>
-                    </TBODY>
-                </TABLE>
+<form action="UpdateStaffServlet" method="POST" name="regist">
+    <div class="operation_page">
+        <table class="Add">
+            <tbody>
+            <tr>
+                <td class="Add_title">
+                    <div>修改用户信息</div>
                 </td>
             </tr>
-</table>
+            <tr>
+                <td>
+                    <table class="Add_content">
+                        <tbody>
+                        <tr>
+                            <td class="Add_font">员工姓名：</td>
+                            <td>
+                                <input type="text" name="name" id="name"size="30" class="Add_input" value="<%=staff.getsName()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工性别：</td>
+                            <td>
+                                <input type="radio" name="sex" id="sex" value="<%=a%>" checked="true">男
+                                <input type="radio" name="sex" value="<%=b%>" >女
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">电话号码：</td>
+                            <td>
+                                <input type="text" name="userPhone" id="userPhone" size="30" class="Add_input" value="<%=staff.getsPhone()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">月薪：</td>
+                            <td>
+                                <input type="text" name="userSalary" id="userSalary"  size="30" class="Add_input" value="<%=staff.getsSalary()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">聘入日期：</td>
+                            <td>
+                                <%
+                                    String date=(new SimpleDateFormat("yyyy年MM月dd日")).format(staff.getsDate());//
+                                    SimpleDateFormat sdf0 = new SimpleDateFormat("yyyy");
+                                    SimpleDateFormat sdf1 = new SimpleDateFormat("MM");
+                                    SimpleDateFormat sdf2= new SimpleDateFormat("dd");
+                                    String str1 = sdf0.format(staff.getsDate());
+                                    String str2 = sdf1.format(staff.getsDate());
+                                    String str3 = sdf2.format(staff.getsDate());
+                                %>
+                                <input id="selYear" name="selYear" size="2" value="<%=str1%>">年
+                                <input id="selMonth" name="selMonth"  size="2" value="<%=str2%>">月
+                                <input id="selDay" name="selDay"  size="2" value="<%=str3%>">日
+                                <input name="sid" value="<%=staff.getsID()%>" display="none">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工住址：</td>
+                            <td>
+                                <input type="text" name="userAddress"  id="userAddress" size="30" class="Add_input" value="<%=staff.getsAdds()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">员工职位：</td>
+                            <td>
+                                <select name="userJob"  id="userJob" class="Add_input">
+                                    <option value="<%=staff.getsProfessional()%>"><%=staff.getsProfessional()%></option>
+                                    <option value="经理">经理</option>
+                                    <option value="财务管理员">财务管理员</option>
+                                    <option value="销售管理员">销售管理员</option>
+                                    <option value="采购管理员">采购管理员</option>
+                                    <option value="仓库管理员">仓库管理员</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font" colspan="2" text align="center">&nbsp;&nbsp;&nbsp;为该员工修改其登陆账户和密码：</td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">用户名：</td>
+                            <td>
+                                <input type="text" name="userName" id="userName" size="30" class="Add_input" value="<%=login.getUsername()%>">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="Add_font">用户密码：</td>
+                            <td>
+                                <input type="password" name="userPass" id="userPass" size="30" class="Add_input" value="<%=login.getPassword()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Add_font">确认密码：</td>
+                            <td>
+                                <input type="password" name="rePass" id="rePass"  size="30" class="Add_input" value="<%=login.getPassword()%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="res()">重置</button>&nbsp;&nbsp;
+                                <button onclick="sub()">提交</button>&nbsp;&nbsp;
+                                <button onclick="ret()">返回</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </form>
 </body>
+
+
 </html>
