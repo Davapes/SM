@@ -41,5 +41,14 @@
         <jarDirectory url="file://C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://G:/Compressed/servlet-3_0-final-jar_and_schema/javax.servlet.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
