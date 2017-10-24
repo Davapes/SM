@@ -94,31 +94,31 @@
                     <tr>
                         <td class="Add_font">商品ID：</td>
                         <td>
-                            <input type="text" name="commodityid" id="commodityid" value size="30" class="Add_input">
+                            <input type="text" name="commodityid" id="commodityid"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">销售表ID：</td>
                         <td>
-                            <input type="text" name="merchandisingid" id="merchandisingid" value="30" class="Add_input">
+                            <input type="text" name="merchandisingid" id="merchandisingid" size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">销售数量：</td>
                         <td>
-                            <input type="text" name="gsNum" id="gsNum" value size="30" class="Add_input">
+                            <input type="text" name="gsNum" id="gsNum"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">销售金额：</td>
                         <td>
-                            <input type="text" name="gsje" id="gsje" value size="30" class="Add_input">
+                            <input type="text" name="gsje" id="gsje"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">销售盈利：</td>
                         <td>
-                            <input type="text" name="gsylje"  id="gsylje" value size="30" class="Add_input">
+                            <input type="text" name="gsylje"  id="gsylje"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
@@ -127,20 +127,20 @@
                     <tr>
                         <td class="Add_font">用户提交名：</td>
                         <td>
-                            <input type="text" name="userName" id="userName" value size="30" class="Add_input">
+                            <input type="text" name="userName" id="userName"  size="30" class="Add_input">
                         </td>
                     </tr>
 
                     <tr>
                         <td class="Add_font">用户提交密码：</td>
                         <td>
-                            <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                            <input type="password" name="userPass" id="userPass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">确认密码：</td>
                         <td>
-                            <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                            <input type="password" name="rePass" id="rePass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>

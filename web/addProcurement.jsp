@@ -84,37 +84,37 @@
                     <tr>
                         <td class="Add_font">商品ID：</td>
                         <td>
-                            <input type="text" name="commodityid" id="commodityid" value size="30" class="Add_input">
+                            <input type="text" name="commodityid" id="commodityid"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">采购编号：</td>
                         <td>
-                            <input type="text" name="purchaseid" id="purchaseid" value size="30" class="Add_input">
+                            <input type="text" name="purchaseid" id="purchaseid"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">采购数量：</td>
                         <td>
-                            <input type="text" name="pnum" id="pnum" value size="30" class="Add_input">
+                            <input type="text" name="pnum" id="pnum"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">采购金额：</td>
                         <td>
-                            <input type="text" name="pje" id="pje" value size="30" class="Add_input">
+                            <input type="text" name="pje" id="pje"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">用户提交密码：</td>
                         <td>
-                            <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                            <input type="password" name="userPass" id="userPass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">确认密码：</td>
                         <td>
-                            <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                            <input type="password" name="rePass" id="rePass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>

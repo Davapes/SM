@@ -164,31 +164,31 @@
                     <tr>
                         <td class="Add_font">商品进价：</td>
                         <td>
-                            <input type="text" name="purchaseprice"  id="purchaseprice" value size="30" class="Add_input">
+                            <input type="text" name="purchaseprice"  id="purchaseprice"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">商品进价：</td>
                         <td>
-                            <input type="text" name="purchaseprice"  id="purchaseprice" value size="30" class="Add_input">
+                            <input type="text" name="purchaseprice"  id="purchaseprice"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">商品供应商ID：</td>
                         <td>
-                            <input type="text" name="supplierid"  id="supplierid" value size="30" class="Add_input">
+                            <input type="text" name="supplierid"  id="supplierid"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">商品保质期：</td>
                         <td>
-                            <input type="text" name="warranty"  id="warranty" value size="30" class="Add_input">
+                            <input type="text" name="warranty"  id="warranty"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">商品仓库ID：</td>
                         <td>
-                            <input type="text" name="warehouseid"  id="warehouseid" value size="30" class="Add_input">
+                            <input type="text" name="warehouseid"  id="warehouseid"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
@@ -204,13 +204,13 @@
                     <tr>
                         <td class="Add_font">用户提交密码：</td>
                         <td>
-                            <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                            <input type="password" name="userPass" id="userPass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">确认密码：</td>
                         <td>
-                            <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                            <input type="password" name="rePass" id="rePass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>

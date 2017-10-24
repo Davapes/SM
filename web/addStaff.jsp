@@ -96,7 +96,7 @@
                     <tr>
                         <td class="Add_font">员工姓名：</td>
                         <td>
-                            <input type="text" name="name" id="name" value size="30" class="Add_input">
+                            <input type="text" name="name" id="name"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
@@ -109,13 +109,13 @@
                     <tr>
                         <td class="Add_font">电话号码：</td>
                         <td>
-                            <input type="text" name="userPhone" id="userPhone" value size="30" class="Add_input">
+                            <input type="text" name="userPhone" id="userPhone"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">月薪：</td>
                         <td>
-                            <input type="text" name="userSalary" id="userSalary" value size="30" class="Add_input">
+                            <input type="text" name="userSalary" id="userSalary"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
@@ -137,7 +137,7 @@
                     <tr>
                         <td class="Add_font">员工住址：</td>
                         <td>
-                            <input type="text" name="userAddress"  id="userAddress" value size="30" class="Add_input">
+                            <input type="text" name="userAddress"  id="userAddress"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
@@ -159,20 +159,20 @@
                     <tr>
                         <td class="Add_font">用户名：</td>
                         <td>
-                            <input type="text" name="userName" id="userName" value size="30" class="Add_input">
+                            <input type="text" name="userName" id="userName"  size="30" class="Add_input">
                         </td>
                     </tr>
 
                     <tr>
                         <td class="Add_font">用户密码：</td>
                         <td>
-                            <input type="password" name="userPass" id="userPass" value size="30" class="Add_input">
+                            <input type="password" name="userPass" id="userPass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
                         <td class="Add_font">确认密码：</td>
                         <td>
-                            <input type="password" name="rePass" id="rePass" value size="30" class="Add_input">
+                            <input type="password" name="rePass" id="rePass"  size="30" class="Add_input">
                         </td>
                     </tr>
                     <tr>
